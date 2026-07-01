@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { BadgeEuro, ChevronDown, Gift, Globe2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Gift, Globe } from "lucide-react";
 import {
   languageOptions,
   useSitePreferences,
@@ -13,26 +13,64 @@ type OpenMenu = "language" | "currency" | null;
 
 export function TopUtilityBar() {
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
   const { currency, language, setCurrency, setLanguage } = useSitePreferences();
-  const selectedLanguage = languageOptions.find((item) => item.code === language);
-  const selectedCurrency = currencyOptions.find((item) => item.code === currency);
+
+  const selectedLanguage = languageOptions.find(
+    (item) => item.code === language,
+  );
+
+  const selectedCurrency = currencyOptions.find(
+    (item) => item.code === currency,
+  );
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (!menuRef.current) return;
+
+      if (!menuRef.current.contains(event.target as Node)) {
+        setOpenMenu(null);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpenMenu(null);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
-    <div className="min-h-[34px] bg-gradient-to-r from-[#003f36] via-[#00594c] to-[#003f36] text-sm text-white/90 sm:h-[34px]">
-      <div className="mx-auto flex min-h-[34px] w-full max-w-[1216px] flex-col gap-2 px-6 py-1 sm:flex-row sm:items-center sm:justify-between sm:py-0 xl:px-0">
-        <p className="inline-flex items-center gap-2">
+    <div className="h-10 border-t border-white/10 bg-[#005143] text-white">
+      <div className="mx-auto flex h-10 w-full max-w-304 items-center justify-between px-6 xl:px-0">
+        <p className="flex h-10 items-center gap-3 text-[14px] font-bold leading-none text-white">
           <Gift
             size={16}
-            strokeWidth={2}
-            className="text-lime-300"
+            strokeWidth={2.4}
+            className="shrink-0 text-lime-300"
             aria-hidden="true"
           />
-          Save up to <span className="font-semibold text-lime-300">20%</span>{" "}
-          with annual billing
+          <span className="leading-none">
+            Save up to{" "}
+            <span className="font-extrabold text-lime-300">20%</span> with
+            annual billing
+          </span>
         </p>
 
-        <div className="relative flex items-center gap-3">
-          <div className="relative">
+        <div
+          ref={menuRef}
+          className="relative z-50 flex h-10 items-center gap-5 text-[14px] font-bold leading-none text-white"
+        >
+          <div className="relative flex h-10 items-center">
             <button
               type="button"
               aria-haspopup="menu"
@@ -40,34 +78,63 @@ export function TopUtilityBar() {
               onClick={() =>
                 setOpenMenu(openMenu === "language" ? null : "language")
               }
-              className="inline-flex items-center gap-1 border-none bg-transparent text-sm text-white transition hover:text-lime-200"
+              className="flex h-10 items-center gap-2 border-none bg-transparent p-0 text-[14px] font-bold leading-none text-white transition hover:text-lime-200"
             >
-              <Globe2 size={14} strokeWidth={2} aria-hidden="true" />
-              {selectedLanguage?.label ?? "English"}
-              <ChevronDown size={12} strokeWidth={2} aria-hidden="true" />
+              <Globe
+                size={16}
+                strokeWidth={2.3}
+                className="shrink-0"
+                aria-hidden="true"
+              />
+
+              <span className="leading-none">
+                {selectedLanguage?.label ?? "English"}
+              </span>
+
+              <ChevronDown
+                size={14}
+                strokeWidth={2.3}
+                className={`shrink-0 transition ${
+                  openMenu === "language" ? "rotate-180" : ""
+                }`}
+                aria-hidden="true"
+              />
             </button>
+
             {openMenu === "language" ? (
-              <div className="absolute right-0 top-6 z-50 w-36 rounded-xl border border-[#dce7e5] bg-white p-1 text-[#071827] shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
-                {languageOptions.map((option) => (
-                  <button
-                    key={option.code}
-                    type="button"
-                    className="block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-[#e8f6f3]"
-                    onClick={() => {
-                      setLanguage(option.code as LanguageCode);
-                      setOpenMenu(null);
-                    }}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+              <div className="absolute right-0 top-11 w-44 rounded-2xl border border-[#dce7e5] bg-white p-2 text-[#071827] shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
+                {languageOptions.map((option) => {
+                  const isSelected = option.code === language;
+
+                  return (
+                    <button
+                      key={option.code}
+                      type="button"
+                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                        isSelected
+                          ? "bg-[#e8f6f3] text-[#007f6d]"
+                          : "text-[#071827] hover:bg-[#f6fbfa]"
+                      }`}
+                      onClick={() => {
+                        setLanguage(option.code as LanguageCode);
+                        setOpenMenu(null);
+                      }}
+                    >
+                      <span>{option.label}</span>
+
+                      {isSelected ? (
+                        <Check size={15} strokeWidth={2.5} aria-hidden="true" />
+                      ) : null}
+                    </button>
+                  );
+                })}
               </div>
             ) : null}
           </div>
 
-          <span className="h-4 w-px bg-white/30" aria-hidden="true" />
+          <span className="h-5 w-px bg-white/35" aria-hidden="true" />
 
-          <div className="relative">
+          <div className="relative flex h-10 items-center">
             <button
               type="button"
               aria-haspopup="menu"
@@ -75,29 +142,53 @@ export function TopUtilityBar() {
               onClick={() =>
                 setOpenMenu(openMenu === "currency" ? null : "currency")
               }
-              className="inline-flex items-center gap-1 border-none bg-transparent text-sm text-white transition hover:text-lime-200"
+              className="flex h-10 items-center gap-2 border-none bg-transparent p-0 text-[14px] font-bold leading-none text-white transition hover:text-lime-200"
             >
-              <BadgeEuro size={14} strokeWidth={2} aria-hidden="true" />
-              {selectedCurrency
-                ? `${selectedCurrency.code} (${selectedCurrency.symbol})`
-                : "EUR (\u20ac)"}
-              <ChevronDown size={12} strokeWidth={2} aria-hidden="true" />
+              <span className="leading-none">
+                {selectedCurrency
+                  ? `${selectedCurrency.code} (${selectedCurrency.symbol})`
+                  : "EUR (€)"}
+              </span>
+
+              <ChevronDown
+                size={14}
+                strokeWidth={2.3}
+                className={`shrink-0 transition ${
+                  openMenu === "currency" ? "rotate-180" : ""
+                }`}
+                aria-hidden="true"
+              />
             </button>
+
             {openMenu === "currency" ? (
-              <div className="absolute right-0 top-6 z-50 w-32 rounded-xl border border-[#dce7e5] bg-white p-1 text-[#071827] shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
-                {currencyOptions.map((option) => (
-                  <button
-                    key={option.code}
-                    type="button"
-                    className="block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-[#e8f6f3]"
-                    onClick={() => {
-                      setCurrency(option.code as CurrencyCode);
-                      setOpenMenu(null);
-                    }}
-                  >
-                    {option.code} ({option.symbol})
-                  </button>
-                ))}
+              <div className="absolute right-0 top-11 w-44 rounded-2xl border border-[#dce7e5] bg-white p-2 text-[#071827] shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
+                {currencyOptions.map((option) => {
+                  const isSelected = option.code === currency;
+
+                  return (
+                    <button
+                      key={option.code}
+                      type="button"
+                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                        isSelected
+                          ? "bg-[#e8f6f3] text-[#007f6d]"
+                          : "text-[#071827] hover:bg-[#f6fbfa]"
+                      }`}
+                      onClick={() => {
+                        setCurrency(option.code as CurrencyCode);
+                        setOpenMenu(null);
+                      }}
+                    >
+                      <span>
+                        {option.code} ({option.symbol})
+                      </span>
+
+                      {isSelected ? (
+                        <Check size={15} strokeWidth={2.5} aria-hidden="true" />
+                      ) : null}
+                    </button>
+                  );
+                })}
               </div>
             ) : null}
           </div>

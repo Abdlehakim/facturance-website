@@ -22,3 +22,12 @@ body {
   background: #99f6e4;
   color: #134e4a;
 }
+
+html {
+  min-width: 1280px;
+  scroll-behavior: smooth;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}

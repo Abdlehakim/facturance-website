@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -5,62 +6,28 @@ const checks = ["No credit card required", "Setup in minutes"];
 
 function DashboardMockup() {
   return (
-    <div className="relative hidden h-full items-start justify-center overflow-visible pt-3 lg:flex">
-      <div className="h-[104px] w-[300px] rounded-lg border border-white/30 bg-white p-3 text-[#071827] shadow-2xl">
-        <div className="flex items-center justify-between border-b border-[#e6eeec] pb-2">
-          <div>
-            <p className="text-xs font-bold uppercase text-[#007f6d]">
-              Dashboard
-            </p>
-            <p className="mt-0.5 text-base font-extrabold">42,860 EUR</p>
-          </div>
-          <span className="rounded-full bg-[#e8f6f3] px-3 py-1 text-xs font-bold text-[#007f6d]">
-            Synced
-          </span>
-        </div>
+    <div className="pointer-events-none absolute bottom-0 right-0 hidden h-full w-[58%] lg:block">
+      <div className="absolute bottom-10 right-16 h-72 w-130 rounded-full bg-black/30 blur-3xl" />
+      <div className="absolute bottom-20 right-28 h-80 w-130 rounded-full bg-teal-300/20 blur-3xl" />
 
-        <div className="mt-2 grid grid-cols-[1fr_60px] gap-3">
-          <div>
-            <div className="grid grid-cols-2 gap-2">
-              {["Invoices", "Stock"].map((item) => (
-                <div key={item} className="rounded-md bg-[#f8fffd] p-2">
-                  <p className="text-xs font-semibold text-[#506070]">
-                    {item}
-                  </p>
-                  <div className="mt-1 h-1.5 rounded-full bg-[#dce7e5]">
-                    <div className="h-1.5 w-2/3 rounded-full bg-[#007f6d]" />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-2 flex h-7 items-end gap-2">
-              {[36, 58, 44, 76, 64, 88].map((height, index) => (
-                <span
-                  key={index}
-                  className="flex-1 rounded-t bg-gradient-to-t from-[#007f6d] to-[#8be0cf]"
-                  style={{ height: `${height}%` }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="grid place-items-center rounded-full border-[7px] border-[#e8f6f3] text-xs font-extrabold text-[#007f6d]">
-            82%
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute right-14 top-6 h-[96px] w-[62px] rounded-xl bg-white p-2 text-[#071827] shadow-2xl">
-        <div className="mx-auto mb-2 h-1 w-6 rounded-full bg-[#dce7e5]" />
-        <p className="text-xs font-bold text-[#007f6d]">Invoices</p>
-        <div className="mt-2 space-y-2">
-          {[1, 2, 3, 4].map((item) => (
-            <div key={item}>
-              <div className="h-1.5 rounded-full bg-[#dce7e5]" />
-              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-[#e8f6f3]" />
-            </div>
-          ))}
-        </div>
+      <div
+        className="absolute inset-0"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent 0%, black 18%, black 100%)",
+          maskImage:
+            "linear-gradient(90deg, transparent 0%, black 18%, black 100%)",
+        }}
+      >
+        <Image
+          src="/images/pricing-device-mockup-v4.png"
+          alt="Facturance dashboard on laptop and phone"
+          fill
+          priority
+          unoptimized
+          sizes="720px"
+          className="object-contain object-bottom-right opacity-100 drop-shadow-[0_34px_70px_rgba(0,0,0,0.42)]"
+        />
       </div>
     </div>
   );
@@ -68,47 +35,57 @@ function DashboardMockup() {
 
 export function PricingCta() {
   return (
-    <section className="mx-auto mt-[11px] mb-0 max-w-[1090px] px-6 xl:px-0">
-      <div className="grid min-h-[210px] grid-cols-1 overflow-hidden rounded-2xl bg-gradient-to-r from-[#003f36] via-[#00594c] to-[#007f6d] text-white shadow-[0_25px_65px_rgba(0,63,54,0.25)] lg:h-[118px] lg:min-h-0 lg:grid-cols-2">
-        <div className="px-7 py-5 lg:py-3">
-          <h2 className="text-[20px] font-extrabold leading-6">
-            Ready to simplify your business?
-          </h2>
-          <p className="mt-0.5 max-w-[320px] text-[12px] leading-[15px] text-white/85">
-            Join thousands of businesses using Facturance
-            <br />
-            to manage invoices, inventory, and more.
-          </p>
+    <section className="mx-auto mb-28 mt-24 w-full max-w-304 px-5 sm:px-6 xl:px-0">
+      <div className="relative isolate overflow-hidden rounded-4xl bg-[linear-gradient(135deg,#003f36_0%,#006151_50%,#008977_100%)] text-white shadow-[0_36px_100px_rgba(0,63,54,0.32)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(255,255,255,0.14)_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-40" />
 
-          <div className="mt-1 flex flex-wrap items-center gap-3 lg:flex-nowrap lg:gap-[42px]">
-            <div className="flex gap-4">
+        <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-emerald-300/12 blur-3xl" />
+        <div className="absolute right-10 top-8 h-96 w-96 rounded-full bg-teal-300/18 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-64 w-180 rounded-full bg-emerald-300/12 blur-3xl" />
+
+        <div className="relative z-10 min-h-107.5 px-7 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+          <div className="relative z-20 max-w-140">
+            <h2 className="max-w-135 text-[40px] font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-[52px] lg:text-[54px]">
+              Ready to simplify your business?
+            </h2>
+
+            <p className="mt-7 max-w-140 text-[17px] font-semibold leading-8 text-white/90 sm:text-[18px]">
+              Join thousands of businesses using Facturance to manage invoices,
+              inventory, and more.
+            </p>
+
+            <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
               <Link
                 href="/register"
-                className="inline-flex h-8 w-[145px] items-center justify-center gap-3 rounded-lg bg-white text-[12px] font-bold text-[#007f6d]"
+                className="inline-flex h-15 min-w-55 items-center justify-center gap-4 rounded-2xl bg-white px-8 text-[17px] font-extrabold text-[#007f6d] shadow-[0_18px_35px_rgba(0,0,0,0.16)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_45px_rgba(0,0,0,0.22)]"
               >
                 Start free
-                <ArrowRight size={14} strokeWidth={2.4} aria-hidden="true" />
+                <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
               </Link>
+
               <Link
                 href="/contact"
-                className="inline-flex h-8 w-[145px] items-center justify-center rounded-lg border border-white/40 text-[12px] font-bold text-white"
+                className="inline-flex h-15 min-w-55 items-center justify-center gap-4 rounded-2xl border border-white/50 bg-white/8 px-8 text-[17px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/13"
               >
                 Book a demo
+                <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
               </Link>
             </div>
 
-            <div className="shrink-0 space-y-1 text-[11px] text-white/90">
+            <div className="mt-12 flex flex-col gap-4 text-[16px] font-bold text-white/92 sm:flex-row sm:items-center sm:gap-10">
               {checks.map((check) => (
-                <span key={check} className="flex items-center gap-2">
-                  <Check size={12} strokeWidth={2.4} aria-hidden="true" />
+                <span key={check} className="flex items-center gap-3">
+                  <span className="flex size-6 items-center justify-center rounded-full bg-white/10">
+                    <Check size={18} strokeWidth={3} aria-hidden="true" />
+                  </span>
                   {check}
                 </span>
               ))}
             </div>
           </div>
-        </div>
 
-        <DashboardMockup />
+          <DashboardMockup />
+        </div>
       </div>
     </section>
   );

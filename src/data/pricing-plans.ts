@@ -28,7 +28,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "starter",
     name: "Starter",
-    baseMonthlyPrice: 9,
+    baseMonthlyPrice: 15,
     description: "For freelancers and small teams.",
     icon: "rocket",
     features: [
@@ -40,7 +40,8 @@ export const pricingPlans: PricingPlan[] = [
       "Products",
       "Desktop + Web access",
       "Automatic sync",
-      "2 GB storage",
+      "3 GB storage",
+      "Email support",
     ],
     cta: "Start free",
     href: "/register",
@@ -49,7 +50,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "professional",
     name: "Professional",
-    baseMonthlyPrice: 19,
+    baseMonthlyPrice: 29,
     description: "For growing businesses.",
     icon: "briefcase",
     popular: true,
@@ -63,7 +64,8 @@ export const pricingPlans: PricingPlan[] = [
       "API access",
       "Desktop + Web access",
       "Automatic sync",
-      "20 GB storage",
+      "25 GB storage",
+      "Priority email support",
     ],
     cta: "Start free",
     href: "/register",
@@ -72,12 +74,13 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: "business",
     name: "Business",
-    baseMonthlyPrice: 39,
+    baseMonthlyPrice: 59,
     description: "For advanced teams.",
     icon: "chart",
     features: [
-      "Unlimited users",
-      "Unlimited storage with fair use",
+      "3 companies",
+      "25 users included",
+      "100 GB storage",
       "Multiple branches",
       "Advanced permissions",
       "Audit logs",
@@ -85,10 +88,11 @@ export const pricingPlans: PricingPlan[] = [
       "Priority support",
       "Desktop + Web access",
       "Automatic sync",
+      "Fair use backups",
     ],
     cta: "Start free",
     href: "/register",
-    note: "No credit card required",
+    note: "Extra users and storage available",
   },
   {
     id: "enterprise",
@@ -97,7 +101,9 @@ export const pricingPlans: PricingPlan[] = [
     description: "For large organizations.",
     icon: "building",
     features: [
-      "Dedicated infrastructure",
+      "Custom companies and users",
+      "Dedicated infrastructure option",
+      "Custom storage package",
       "SLA",
       "SSO",
       "Custom modules",
@@ -107,7 +113,7 @@ export const pricingPlans: PricingPlan[] = [
     ],
     cta: "Contact sales",
     href: "/contact",
-    note: "We'll build the right plan for you",
+    note: "Custom plans start from €149/month",
   },
 ];
 
@@ -148,7 +154,8 @@ export const pricingFaqs: PricingFaq[] = [
   },
   {
     question: "What happens if I exceed storage limits?",
-    answer: "We notify you before any limit affects your workspace.",
+    answer:
+      "We notify you before any storage limit affects your workspace. You can upgrade your plan or add extra storage.",
   },
   {
     question: "What payment methods do you accept?",

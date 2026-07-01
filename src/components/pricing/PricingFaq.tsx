@@ -9,29 +9,31 @@ export function PricingFaq() {
   ];
 
   return (
-    <section className="mx-auto mt-0 max-w-[1090px] px-6 xl:px-0">
-      <h2 className="my-6 text-center text-[18px] font-extrabold text-[#071827]">
+    <section className="mx-auto mt-17.5 w-full max-w-304 px-6 xl:px-0">
+      <h2 className="text-center text-[30px] font-extrabold tracking-[-0.03em] text-[#071827]">
         Frequently asked questions
       </h2>
 
-      <div className="grid grid-cols-1 gap-x-4 gap-y-1 md:grid-cols-2">
+      <div className="mt-7 grid grid-cols-1 gap-6 md:grid-cols-2">
         {faqColumns.map((column, columnIndex) => (
-          <div key={columnIndex} className="space-y-0.5">
+          <div key={columnIndex} className="space-y-3">
             {column.map((faq) => (
               <details
                 key={faq.question}
-                className="group overflow-hidden rounded-lg border border-[#dce7e5] bg-white"
+                className="group overflow-hidden rounded-xl border border-[#dce7e5] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
               >
-                <summary className="flex h-[21px] cursor-pointer list-none items-center justify-between px-4 text-[10px] font-semibold text-[#071827] hover:bg-[#f8fffd]">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 px-7 text-[15px] font-bold text-[#071827] transition hover:bg-[#f8fffd]">
                   {faq.question}
+
                   <ChevronDown
-                    size={13}
+                    size={20}
                     strokeWidth={2.2}
-                    className="ml-4 shrink-0 text-[#071827] transition group-open:rotate-180"
+                    className="shrink-0 text-[#071827] transition group-open:rotate-180"
                     aria-hidden="true"
                   />
                 </summary>
-                <p className="px-4 pb-3 text-[11.5px] leading-5 text-[#506070]">
+
+                <p className="border-t border-[#e6eeec] px-7 pb-6 pt-4 text-[14px] font-medium leading-7 text-[#506070]">
                   {faq.answer}
                 </p>
               </details>

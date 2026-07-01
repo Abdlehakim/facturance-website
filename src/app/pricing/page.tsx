@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <div className="bg-[radial-gradient(circle_at_top,_rgba(0,127,109,0.055),_transparent_28rem),linear-gradient(180deg,#ffffff_0%,#fbfdfd_100%)]">
+    <div className="overflow-hidden bg-[radial-gradient(circle_at_top,rgba(0,127,109,0.08),transparent_32rem),linear-gradient(180deg,#ffffff_0%,#fbfdfd_48%,#f8fbfa_100%)]">
       <PricingHero />
       <PricingCardsGrid />
       <PricingBenefits />

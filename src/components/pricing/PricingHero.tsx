@@ -7,18 +7,22 @@ export function PricingHero() {
   const { billingCycle, setBillingCycle } = useSitePreferences();
 
   return (
-    <section className="px-6 pb-1 pt-4 text-center">
-      <div className="mx-auto max-w-3xl">
-        <p className="inline-flex items-center rounded-full bg-[#e8f6f3] px-3 py-0.5 text-[11px] font-bold tracking-wide text-[#007f6d]">
-          PRICING
+    <section className="px-6 pb-17.5 pt-12 text-center xl:px-0">
+      <div className="mx-auto max-w-4xl">
+        <p className="inline-flex items-center rounded-full bg-[#e8f6f3] px-5 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.12em] text-[#007f6d]">
+          Pricing
         </p>
-        <h1 className="mt-2 text-[32px] font-extrabold leading-[1.12] tracking-tight text-[#071827] sm:text-[34px]">
-          Simple pricing. Powerful platform.
+
+        <h1 className="mx-auto mt-6 max-w-4xl text-[46px] font-extrabold leading-[1.08] tracking-[-0.045em] text-[#071827] sm:text-[56px]">
+          Simple pricing.{" "}
+          <span className="text-[#007f6d]">Powerful platform.</span>
         </h1>
-        <p className="mx-auto mt-2 max-w-[390px] text-[13.5px] leading-[18px] text-[#506070]">
-          Choose the plan that fits your business today, and scale seamlessly
-          as your needs grow.
+
+        <p className="mx-auto mt-6 max-w-165 text-[17px] font-medium leading-8 text-[#506070]">
+          Choose the plan that fits your business today, and scale seamlessly as
+          your needs grow.
         </p>
+
         <BillingToggle value={billingCycle} onChange={setBillingCycle} />
       </div>
     </section>
