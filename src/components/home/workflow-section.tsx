@@ -36,7 +36,7 @@ export function WorkflowSection() {
             Operating model
           </div>
 
-          <h2 className="mt-5 max-w-145 text-[42px] font-extrabold leading-[1.08] tracking-tight text-zinc-950 lg:text-[54px]">
+          <h2 className="mt-5 max-w-145 text-[42px] font-extrabold leading-[1.08] tracking-tight text-zinc-950 lg:text-[40px]">
             A simple path from setup to synchronized operations.
           </h2>
 

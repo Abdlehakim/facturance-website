@@ -45,7 +45,7 @@ export function PricingCta() {
 
         <div className="relative z-10 min-h-107.5 px-7 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
           <div className="relative z-20 max-w-140">
-            <h2 className="max-w-135 text-[40px] font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-[52px] lg:text-[54px]">
+            <h2 className="max-w-135 text-[40px] font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-[52px] lg:text-[40px]">
               Ready to simplify your business?
             </h2>
 

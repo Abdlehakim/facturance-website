@@ -60,7 +60,7 @@ const quickInfo = [
   {
     icon: MapPin,
     label: "Region",
-    value: "Tunisia & International",
+    value: "International",
   },
   {
     icon: Clock3,
