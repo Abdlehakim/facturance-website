@@ -1,0 +1,38 @@
+import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
+
+export function BlogCtaSection() {
+  return (
+    <div className="mx-auto w-full max-w-304 px-6 py-20 xl:px-0">
+      <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-[#00342e] via-[#005f52] to-[#00917b] p-8 text-white shadow-[0_30px_90px_rgba(0,63,54,0.26)] sm:p-12">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(255,255,255,0.13)_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-35" />
+
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-300">
+              <Sparkles size={15} strokeWidth={2.7} />
+              Stay updated
+            </div>
+
+            <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-[-0.04em]">
+              Follow the evolution of Facturance.
+            </h2>
+
+            <p className="mt-4 max-w-150 text-base leading-8 text-white/78">
+              Product updates, architecture notes, and business software ideas
+              for teams building reliable finance operations.
+            </p>
+          </div>
+
+          <Link
+            href="/contact"
+            className="inline-flex h-14 shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-white px-8 text-base font-extrabold text-[#007f6d] shadow-xl shadow-black/10 transition hover:-translate-y-0.5"
+          >
+            Contact us
+            <ArrowRight size={20} strokeWidth={2.7} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
