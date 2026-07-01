@@ -44,7 +44,7 @@ export function HeroSection() {
             SaaS, desktop, and mobile ready
           </div>
 
-          <h1 className="mt-5 max-w-135 text-[30px] font-extrabold leading-[1.04] tracking-[-0.03em] text-zinc-950 lg:text-[58px]">
+          <h1 className="mt-5 max-w-135 text-[30px] font-extrabold leading-[1.04] tracking-[-0.03em] text-zinc-950 lg:text-[40px]">
             Run your business from one clean finance platform.
           </h1>
 

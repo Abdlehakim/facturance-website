@@ -16,7 +16,7 @@ export function BlogHeroSection() {
             Facturance blog
           </div>
 
-          <h1 className="mt-6 max-w-150 text-[30px] font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-[58px]">
+          <h1 className="mt-6 max-w-150 text-[30px] font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-[40px]">
             Notes on building modern business software.
           </h1>
 

@@ -121,7 +121,7 @@ export default function ContactPage() {
               Contact Facturance
             </div>
 
-            <h1 className="mt-6 max-w-150 text-[42px] font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-[58px]">
+            <h1 className="mt-6 max-w-150 text-[42px] font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-[40px]">
               Build your finance platform with a clear path.
             </h1>
 
