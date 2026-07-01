@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SitePreferencesProvider } from "@/components/layout/site-preferences-provider";
 import { TopUtilityBar } from "@/components/layout/TopUtilityBar";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,6 +22,12 @@ export const metadata: Metadata = {
   title: "Facturance | International ERP and invoicing platform",
   description:
     "Facturance is a modern SaaS platform for invoices, companies, roles, permissions, and offline-ready business operations.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
