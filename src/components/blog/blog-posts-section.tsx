@@ -1,18 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { blogPosts } from "@/components/blog/blog-data";
+import { getLocalizedBlogPosts } from "@/components/blog/blog-data";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export function BlogPostsSection() {
+  const { language, t } = useTranslation();
+  const posts = getLocalizedBlogPosts(language);
+
   return (
     <div className="mx-auto w-full max-w-304 px-6 pb-20 xl:px-0">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
           <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
-            Latest articles
+            {t.blog.posts.badge}
           </p>
 
           <h2 className="mt-3 text-4xl font-extrabold tracking-normal text-zinc-950">
-            Product, architecture, and operations.
+            {t.blog.posts.title}
           </h2>
         </div>
 
@@ -20,13 +26,13 @@ export function BlogPostsSection() {
           href="/contact"
           className="btn btn-outline btn-md"
         >
-          Suggest a topic
+          {t.blog.posts.suggestTopic}
           <ArrowRight size={17} strokeWidth={2.7} />
         </Link>
       </div>
 
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map((post) => {
+        {posts.map((post) => {
           const Icon = post.icon;
 
           return (
@@ -59,7 +65,7 @@ export function BlogPostsSection() {
                 </span>
 
                 <span className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-primary">
-                  Read
+                  {t.blog.posts.read}
                   <ArrowRight
                     size={16}
                     strokeWidth={2.8}

@@ -10,7 +10,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { IconBadge } from "@/components/ui/IconBadge";
-import { pricingPlans, type PricingPlan } from "@/data/pricing-plans";
+import {
+  getPricingPlans,
+  type PricingFeature,
+  type PricingPlan,
+} from "@/data/pricing-plans";
 import {
   formatPrice,
   getBillingPrice,
@@ -18,6 +22,7 @@ import {
   type CurrencyCode,
 } from "@/lib/currency";
 import { useSitePreferences } from "@/components/layout/site-preferences-provider";
+import { useTranslation } from "@/i18n/useTranslation";
 
 type PricingCardProps = {
   plan: PricingPlan;
@@ -40,25 +45,20 @@ function CheckIcon() {
   );
 }
 
-function FeatureText({ feature }: { feature: string }) {
-  if (feature === "Unlimited storage with fair use") {
-    return (
-      <span>
-        Unlimited storage
-        <span className="block text-caption font-medium leading-4 text-text-soft">
-          within fair use
-        </span>
-      </span>
-    );
-  }
-
+function FeatureText({ feature }: { feature: PricingFeature }) {
   return (
     <span>
-      {feature}
+      {feature.text}
 
-      {feature === "Multiple warehouses" ? (
-        <span className="ml-2 rounded-full bg-accent-lime px-2.5 py-0.5 text-badge-sm font-extrabold text-brand-primary">
-          Future
+      {feature.badge ? (
+        <span className="ms-2 rounded-full bg-accent-lime px-2.5 py-0.5 text-badge-sm font-extrabold text-brand-primary">
+          {feature.badge}
+        </span>
+      ) : null}
+
+      {feature.subText ? (
+        <span className="block text-caption font-medium leading-4 text-text-soft">
+          {feature.subText}
         </span>
       ) : null}
     </span>
@@ -70,11 +70,12 @@ export function PricingCard({
   billingCycle,
   currency,
 }: PricingCardProps) {
+  const { t } = useTranslation();
   const isCustom = plan.customPrice || !plan.baseMonthlyPrice;
   const baseMonthlyPrice = plan.baseMonthlyPrice ?? 0;
 
   const price = isCustom
-    ? "Custom"
+    ? t.pricing.customPrice
     : formatPrice(getBillingPrice(baseMonthlyPrice, billingCycle), currency);
 
   return (
@@ -87,7 +88,7 @@ export function PricingCard({
     >
       {plan.popular ? (
         <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-7 py-1 text-badge-sm font-extrabold uppercase tracking-normal text-white shadow-lg shadow-brand-primary/20">
-          Most popular
+          {t.pricing.mostPopular}
         </span>
       ) : null}
 
@@ -113,18 +114,18 @@ export function PricingCard({
 
           {isCustom ? null : (
             <span className="pb-1.5 text-caption-lg font-semibold text-text-muted">
-              / month
+              {t.pricing.monthSuffix}
             </span>
           )}
         </div>
 
         {isCustom ? (
           <p className="mt-1.5 text-caption-lg font-medium text-text-muted">
-            Tailored to your needs
+            {t.pricing.tailoredToNeeds}
           </p>
         ) : billingCycle === "yearly" ? (
           <p className="mt-1.5 text-caption-lg font-medium text-text-muted">
-            Billed yearly
+            {t.pricing.billedYearly}
           </p>
         ) : null}
       </div>
@@ -132,8 +133,11 @@ export function PricingCard({
       <div className="my-5 border-t border-border-soft" />
 
       <ul className="space-y-2.5 text-feature font-medium leading-5">
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-text-strong">
+        {plan.features.map((feature, index) => (
+          <li
+            key={`${plan.id}-${index}`}
+            className="flex items-start gap-2.5 text-text-strong"
+          >
             <CheckIcon />
             <FeatureText feature={feature} />
           </li>
@@ -160,10 +164,12 @@ export function PricingCard({
 
 export function PricingCardsGrid() {
   const { billingCycle, currency } = useSitePreferences();
+  const { language } = useTranslation();
+  const plans = getPricingPlans(language);
 
   return (
     <section className="mx-auto grid w-full max-w-304 grid-cols-1 items-stretch gap-6 px-6 md:grid-cols-2 xl:grid-cols-4 xl:px-0">
-      {pricingPlans.map((plan) => (
+      {plans.map((plan) => (
         <PricingCard
           key={plan.id}
           plan={plan}

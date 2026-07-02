@@ -15,6 +15,7 @@ import {
   useSitePreferences,
   type LanguageCode,
 } from "@/components/layout/site-preferences-provider";
+import { useTranslation } from "@/i18n/useTranslation";
 import { currencyOptions, type CurrencyCode } from "@/lib/currency";
 
 type OpenMenu = "language" | "currency" | null;
@@ -27,6 +28,13 @@ type MobilePreferencesModalProps = {
   setCurrency: Dispatch<SetStateAction<CurrencyCode>>;
   onClose: () => void;
   modalRef: RefObject<HTMLDivElement | null>;
+  labels: {
+    preferences: string;
+    chooseLanguage: string;
+    chooseCurrency: string;
+    closePreferencesMenu: string;
+    close: string;
+  };
 };
 
 function MobilePreferencesModal({
@@ -37,17 +45,18 @@ function MobilePreferencesModal({
   setCurrency,
   onClose,
   modalRef,
+  labels,
 }: MobilePreferencesModalProps) {
   if (!openMenu || typeof document === "undefined") return null;
 
   const title =
-    openMenu === "language" ? "Choose language" : "Choose currency";
+    openMenu === "language" ? labels.chooseLanguage : labels.chooseCurrency;
 
   return createPortal(
     <div className="fixed inset-0 z-99999 sm:hidden">
       <button
         type="button"
-        aria-label="Close preferences menu"
+        aria-label={labels.closePreferencesMenu}
         className="absolute inset-0 h-full w-full bg-black/60 backdrop-blur-md"
         onClick={onClose}
       />
@@ -65,7 +74,7 @@ function MobilePreferencesModal({
           <div className="mb-5 flex items-start justify-between gap-4">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-text-soft">
-                Preferences
+                {labels.preferences}
               </p>
 
               <h2 className="mt-1 text-2xl font-extrabold leading-tight text-text-strong">
@@ -77,7 +86,7 @@ function MobilePreferencesModal({
               type="button"
               onClick={onClose}
               className="grid size-11 shrink-0 place-items-center rounded-full bg-zinc-100 text-text-strong transition hover:bg-zinc-200"
-              aria-label="Close"
+              aria-label={labels.close}
             >
               <X size={22} strokeWidth={2.5} aria-hidden="true" />
             </button>
@@ -94,7 +103,7 @@ function MobilePreferencesModal({
                         key={option.code}
                         type="button"
                         role="menuitem"
-                        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border px-4 text-left text-base font-bold transition ${
+                        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border px-4 text-start text-base font-bold transition ${
                           isSelected
                             ? "border-brand-primary/25 bg-brand-soft text-brand-primary"
                             : "border-border-soft bg-white text-text-strong hover:bg-surface-hover"
@@ -125,7 +134,7 @@ function MobilePreferencesModal({
                         key={option.code}
                         type="button"
                         role="menuitem"
-                        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border px-4 text-left text-base font-bold transition ${
+                        className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border px-4 text-start text-base font-bold transition ${
                           isSelected
                             ? "border-brand-primary/25 bg-brand-soft text-brand-primary"
                             : "border-border-soft bg-white text-text-strong hover:bg-surface-hover"
@@ -165,6 +174,7 @@ export function TopUtilityBar() {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const { currency, language, setCurrency, setLanguage } = useSitePreferences();
+  const { t } = useTranslation();
 
   const selectedLanguage = languageOptions.find(
     (item) => item.code === language,
@@ -233,9 +243,11 @@ export function TopUtilityBar() {
           />
 
           <span>
-            Save up to{" "}
-            <span className="font-extrabold text-lime-300">20%</span> with
-            annual billing
+            {t.topBar.annualBillingPrefix}{" "}
+            <span className="font-extrabold text-lime-300">
+              {t.topBar.annualBillingDiscount}
+            </span>{" "}
+            {t.topBar.annualBillingSuffix}
           </span>
         </p>
 
@@ -245,7 +257,7 @@ export function TopUtilityBar() {
               type="button"
               aria-haspopup="menu"
               aria-expanded={openMenu === "language"}
-              aria-label="Select language"
+              aria-label={t.topBar.selectLanguage}
               onClick={() => toggleMenu("language")}
               className="flex h-9 min-w-0 max-w-37.5 touch-manipulation items-center gap-2 rounded-md border-none bg-transparent px-1 font-bold leading-none text-white transition hover:text-lime-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200/80 sm:h-10 sm:max-w-none sm:px-0"
             >
@@ -283,7 +295,7 @@ export function TopUtilityBar() {
                       key={option.code}
                       type="button"
                       role="menuitem"
-                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-start text-sm font-semibold transition ${
                         isSelected
                           ? "bg-brand-soft text-brand-primary"
                           : "text-text-strong hover:bg-surface-hover"
@@ -317,7 +329,7 @@ export function TopUtilityBar() {
               type="button"
               aria-haspopup="menu"
               aria-expanded={openMenu === "currency"}
-              aria-label="Select currency"
+              aria-label={t.topBar.selectCurrency}
               onClick={() => toggleMenu("currency")}
               className="flex h-9 min-w-0 max-w-35 touch-manipulation items-center gap-2 rounded-md border-none bg-transparent px-1 font-bold leading-none text-white transition hover:text-lime-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200/80 sm:h-10 sm:max-w-none sm:px-0"
             >
@@ -350,7 +362,7 @@ export function TopUtilityBar() {
                       key={option.code}
                       type="button"
                       role="menuitem"
-                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-start text-sm font-semibold transition ${
                         isSelected
                           ? "bg-brand-soft text-brand-primary"
                           : "text-text-strong hover:bg-surface-hover"
@@ -389,6 +401,13 @@ export function TopUtilityBar() {
         setCurrency={setCurrency}
         onClose={() => setOpenMenu(null)}
         modalRef={modalRef}
+        labels={{
+          preferences: t.topBar.preferences,
+          chooseLanguage: t.topBar.chooseLanguage,
+          chooseCurrency: t.topBar.chooseCurrency,
+          closePreferencesMenu: t.topBar.closePreferencesMenu,
+          close: t.topBar.close,
+        }}
       />
     </div>
   );

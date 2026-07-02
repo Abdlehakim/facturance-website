@@ -5,17 +5,33 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+  { href: "/", labelKey: "home" },
+  { href: "/pricing", labelKey: "pricing" },
+  { href: "/blog", labelKey: "blog" },
+  { href: "/contact", labelKey: "contact" },
+] as const;
+
+type NavigationItem = {
+  href: string;
+  label: string;
+};
+
+type MobileNavigationLabels = {
+  closeNavigation: string;
+  mobileNavigation: string;
+  homeAria: string;
+  login: string;
+  startFree: string;
+};
 
 type MobileNavigationModalProps = {
   isOpen: boolean;
   pathname: string;
+  items: NavigationItem[];
+  labels: MobileNavigationLabels;
   onClose: () => void;
   modalRef: RefObject<HTMLDivElement | null>;
 };
@@ -23,6 +39,8 @@ type MobileNavigationModalProps = {
 function MobileNavigationModal({
   isOpen,
   pathname,
+  items,
+  labels,
   onClose,
   modalRef,
 }: MobileNavigationModalProps) {
@@ -32,7 +50,7 @@ function MobileNavigationModal({
     <div className="fixed inset-0 z-99999 lg:hidden">
       <button
         type="button"
-        aria-label="Close navigation menu"
+        aria-label={labels.closeNavigation}
         className="absolute inset-0 h-full w-full bg-black/60 backdrop-blur-md"
         onClick={onClose}
       />
@@ -42,7 +60,7 @@ function MobileNavigationModal({
           ref={modalRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile navigation"
+          aria-label={labels.mobileNavigation}
           className="mx-auto w-full max-w-md rounded-[2rem] border border-white/20 bg-white/95 p-5 text-text-strong shadow-2xl backdrop-blur-md"
         >
           <div className="mx-auto mb-5 h-1.5 w-14 rounded-full bg-zinc-300" />
@@ -52,7 +70,7 @@ function MobileNavigationModal({
               href="/"
               onClick={onClose}
               className="flex min-w-0 items-center gap-3"
-              aria-label="Facturance home"
+              aria-label={labels.homeAria}
             >
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-xl font-bold text-white shadow-sm">
                 F
@@ -67,14 +85,14 @@ function MobileNavigationModal({
               type="button"
               onClick={onClose}
               className="grid size-11 shrink-0 place-items-center rounded-full bg-zinc-100 text-text-strong transition hover:bg-zinc-200"
-              aria-label="Close navigation menu"
+              aria-label={labels.closeNavigation}
             >
               <X size={22} strokeWidth={2.5} aria-hidden="true" />
             </button>
           </div>
 
-          <nav className="grid gap-2.5" aria-label="Mobile navigation">
-            {navItems.map((item) => {
+          <nav className="grid gap-2.5" aria-label={labels.mobileNavigation}>
+            {items.map((item) => {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
@@ -100,11 +118,11 @@ function MobileNavigationModal({
 
           <div className="mt-5 grid gap-3 border-t border-border-soft pt-5">
             <Link href="/login" onClick={onClose} className="btn btn-outline btn-md">
-              Login
+              {labels.login}
             </Link>
 
             <Link href="/register" onClick={onClose} className="btn btn-primary btn-md">
-              Start free
+              {labels.startFree}
             </Link>
           </div>
         </div>
@@ -116,8 +134,13 @@ function MobileNavigationModal({
 
 export function Navbar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement | null>(null);
+  const translatedNavItems = navItems.map((item) => ({
+    href: item.href,
+    label: t.nav[item.labelKey],
+  }));
 
   function closeMenu() {
     setIsMenuOpen(false);
@@ -163,7 +186,7 @@ export function Navbar() {
           href="/"
           onClick={closeMenu}
           className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3"
-          aria-label="Facturance home"
+          aria-label={t.nav.homeAria}
         >
           <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-lg font-bold text-white shadow-sm sm:h-9 sm:w-9 sm:text-xl">
             F
@@ -176,9 +199,9 @@ export function Navbar() {
 
         <nav
           className="hidden h-16 items-center gap-7 lg:flex xl:gap-10"
-          aria-label="Primary navigation"
+          aria-label={t.nav.primaryNavigation}
         >
-          {navItems.map((item) => {
+          {translatedNavItems.map((item) => {
             const isActive =
               item.href === "/"
                 ? pathname === "/"
@@ -207,7 +230,7 @@ export function Navbar() {
             onClick={closeMenu}
             className="btn btn-outline btn-sm hidden lg:inline-flex"
           >
-            Login
+            {t.nav.login}
           </Link>
 
           <Link
@@ -215,13 +238,13 @@ export function Navbar() {
             onClick={closeMenu}
             className="btn btn-primary btn-sm hidden sm:inline-flex"
           >
-            Start free
+            {t.nav.startFree}
           </Link>
 
           <button
             type="button"
             aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+              isMenuOpen ? t.nav.closeNavigation : t.nav.openNavigation
             }
             aria-controls="mobile-navigation"
             aria-expanded={isMenuOpen}
@@ -240,6 +263,14 @@ export function Navbar() {
       <MobileNavigationModal
         isOpen={isMenuOpen}
         pathname={pathname}
+        items={translatedNavItems}
+        labels={{
+          closeNavigation: t.nav.closeNavigation,
+          mobileNavigation: t.nav.mobileNavigation,
+          homeAria: t.nav.homeAria,
+          login: t.nav.login,
+          startFree: t.nav.startFree,
+        }}
         onClose={closeMenu}
         modalRef={modalRef}
       />

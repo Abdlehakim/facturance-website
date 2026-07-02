@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export function BlogCtaSection() {
+  const { t } = useTranslation();
+
   return (
     <div className="mx-auto w-full max-w-304 px-6 py-20 xl:px-0">
       <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-brand-deep via-brand-forest to-brand-vivid p-8 text-white shadow-[0_30px_90px_rgba(0,63,54,0.26)] sm:p-12">
@@ -11,16 +16,15 @@ export function BlogCtaSection() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-emerald-300">
               <Sparkles size={15} strokeWidth={2.7} />
-              Stay updated
+              {t.blog.cta.badge}
             </div>
 
             <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-normal">
-              Follow the evolution of Facturance.
+              {t.blog.cta.title}
             </h2>
 
             <p className="mt-4 max-w-150 text-base leading-8 text-white/78">
-              Product updates, architecture notes, and business software ideas
-              for teams building reliable finance operations.
+              {t.blog.cta.description}
             </p>
           </div>
 
@@ -28,7 +32,7 @@ export function BlogCtaSection() {
             href="/contact"
             className="btn btn-white btn-lg shrink-0"
           >
-            Contact us
+            {t.blog.cta.button}
             <ArrowRight size={20} strokeWidth={2.7} />
           </Link>
         </div>

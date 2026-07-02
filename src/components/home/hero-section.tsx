@@ -1,18 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Cloud } from "lucide-react";
+import { useTranslation } from "@/i18n/useTranslation";
 
 import heroDeviceMockup from "../../../public/images/hero-device-mockup.png";
 
-const stats = [
-  { label: "Companies", value: "Multi" },
-  { label: "Documents", value: "12+" },
-  { label: "Mode", value: "Cloud +" },
-];
-
-const trustItems = ["No credit card required", "Setup in minutes"];
-
-function HeroMockup({ priority = false }: { priority?: boolean }) {
+function HeroMockup({
+  alt,
+  priority = false,
+}: {
+  alt: string;
+  priority?: boolean;
+}) {
   return (
     <div className="relative mx-auto w-full max-w-90 sm:max-w-140 md:max-w-170 lg:max-w-none">
       {/* soft accent glows behind the device */}
@@ -21,7 +22,7 @@ function HeroMockup({ priority = false }: { priority?: boolean }) {
 
       <Image
         src={heroDeviceMockup}
-        alt="Facturance dashboard preview"
+        alt={alt}
         priority={priority}
         sizes="(max-width: 640px) 92vw, (max-width: 1024px) 78vw, 48vw"
         className="h-auto w-full object-contain drop-shadow-[0_20px_45px_rgba(15,23,42,0.16)] sm:drop-shadow-[0_28px_70px_rgba(15,23,42,0.18)]"
@@ -31,6 +32,8 @@ function HeroMockup({ priority = false }: { priority?: boolean }) {
 }
 
 export function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative isolate select-none overflow-hidden bg-white">
       {/* decorative background */}
@@ -40,20 +43,18 @@ export function HeroSection() {
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:gap-12 md:py-20 lg:min-h-[calc(100svh-104px)] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-12 lg:px-8 lg:py-14 xl:gap-16 xl:px-0">
         {/* text column */}
-        <div className="relative z-10 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="relative z-10 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-start">
           <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-border-brand bg-brand-muted px-3.5 py-2 text-center text-badge-sm font-extrabold uppercase tracking-normal text-brand-primary shadow-sm sm:px-4 sm:text-badge">
             <Cloud size={14} strokeWidth={2.5} className="shrink-0" />
-            <span className="truncate">SaaS, desktop, and mobile ready</span>
+            <span className="truncate">{t.home.hero.badge}</span>
           </div>
 
           <h1 className="mt-5 max-w-[17ch] text-balance text-hero font-extrabold leading-[1.04] tracking-normal text-zinc-950 sm:max-w-[18ch] sm:text-hero-sm md:max-w-[19ch] lg:max-w-[16ch] lg:text-hero-lg xl:text-hero-xl">
-            Run your business from one clean finance platform.
+            {t.home.hero.title}
           </h1>
 
           <p className="mt-4 max-w-2xl text-pretty text-body-sm font-medium leading-7 text-zinc-600 sm:mt-5 sm:text-base sm:leading-8 md:max-w-184 md:text-lg lg:max-w-[46ch]">
-            Facturance helps teams manage invoices, companies, roles,
-            inventory, payments, and offline desktop workflows with a modern
-            cloud-ready foundation.
+            {t.home.hero.description}
           </p>
 
           {/* buttons */}
@@ -62,7 +63,7 @@ export function HeroSection() {
               href="/register"
               className="btn btn-primary btn-lg btn-full sm:w-auto"
             >
-              Create account
+              {t.home.hero.primaryCta}
               <ArrowRight size={20} strokeWidth={2.7} className="shrink-0" />
             </Link>
 
@@ -70,21 +71,21 @@ export function HeroSection() {
               href="/pricing"
               className="btn btn-outline btn-lg btn-full sm:w-auto"
             >
-              View pricing
+              {t.home.hero.secondaryCta}
             </Link>
           </div>
 
           {/* mockup — mobile/tablet only, sits between CTA and stats */}
           <div className="mt-9 w-full min-w-0 lg:hidden">
-            <HeroMockup priority />
+            <HeroMockup alt={t.home.hero.imageAlt} priority />
           </div>
 
           {/* stats */}
           <div className="mt-8 grid w-full max-w-105 grid-cols-3 gap-2 sm:mt-9 sm:max-w-130 sm:gap-3 lg:mt-10 lg:max-w-125">
-            {stats.map((stat) => (
+            {t.home.hero.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="min-w-0 rounded-2xl border border-zinc-200 bg-white/90 px-2.5 py-3.5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover sm:px-3 sm:py-4 lg:text-left"
+                className="min-w-0 rounded-2xl border border-zinc-200 bg-white/90 px-2.5 py-3.5 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover sm:px-3 sm:py-4 lg:text-start"
               >
                 <p className="text-lg font-extrabold tracking-tight text-zinc-950 sm:text-2xl">
                   {stat.value}
@@ -98,7 +99,7 @@ export function HeroSection() {
 
           {/* trust items */}
           <div className="mt-6 flex w-full flex-col items-center justify-center gap-2 text-sm font-bold text-zinc-600 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2 lg:justify-start">
-            {trustItems.map((item) => (
+            {t.home.hero.trustItems.map((item) => (
               <span key={item} className="inline-flex items-center gap-2">
                 <CheckCircle2
                   size={17}
@@ -114,7 +115,7 @@ export function HeroSection() {
 
         {/* mockup — desktop only */}
         <div className="hidden min-w-0 lg:block">
-          <HeroMockup priority />
+          <HeroMockup alt={t.home.hero.imageAlt} priority />
         </div>
       </div>
     </section>

@@ -4,7 +4,8 @@ import { designingFinanceSystemsPost } from "./designing-finance-systems-for-mul
 import { softwareForOwnersAdminsOperatorsPost } from "./designing-software-for-owners-admins-operators";
 import { facturanceRoadmapPost } from "./what-we-are-building-next-for-facturance";
 import { offlineDesktopWorkflowsPost } from "./why-offline-desktop-workflows-still-matter-for-erp-teams";
-import type { BlogPost } from "./blog-types";
+import type { LanguageCode } from "@/components/layout/site-preferences-provider";
+import type { BlogPost, LocalizedBlogPost } from "./blog-types";
 
 export const blogPosts: BlogPost[] = [
   designingFinanceSystemsPost,
@@ -25,4 +26,38 @@ export function getBlogPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-export type { BlogContentBlock, BlogPost } from "./blog-types";
+export function localizeBlogPost(
+  post: BlogPost,
+  language: LanguageCode,
+): LocalizedBlogPost {
+  const localized = post.localized[language];
+
+  return {
+    slug: post.slug,
+    icon: post.icon,
+    publishedAt: post.publishedAt,
+    ...localized,
+  };
+}
+
+export function getLocalizedBlogPosts(
+  language: LanguageCode,
+): LocalizedBlogPost[] {
+  return blogPosts.map((post) => localizeBlogPost(post, language));
+}
+
+export function getLocalizedBlogPostBySlug(
+  slug: string,
+  language: LanguageCode,
+): LocalizedBlogPost | undefined {
+  const post = getBlogPostBySlug(slug);
+
+  return post ? localizeBlogPost(post, language) : undefined;
+}
+
+export type {
+  BlogContentBlock,
+  BlogPost,
+  LocalizedArticleContent,
+  LocalizedBlogPost,
+} from "./blog-types";

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Globe,
   Headphones,
@@ -7,7 +9,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { IconBadge } from "@/components/ui/IconBadge";
-import { pricingBenefits } from "@/data/pricing-plans";
+import { getPricingBenefits } from "@/data/pricing-plans";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const benefitIcons: LucideIcon[] = [
   ShieldCheck,
@@ -18,17 +21,20 @@ const benefitIcons: LucideIcon[] = [
 ];
 
 export function PricingBenefits() {
+  const { language } = useTranslation();
+  const benefits = getPricingBenefits(language);
+
   return (
     <section className="mx-auto mt-16 w-full max-w-304 px-6 xl:px-0">
       <div className="grid grid-cols-1 gap-0 overflow-hidden rounded-3xl border border-border-muted bg-white shadow-[0_18px_60px_rgba(15,23,42,0.06)] md:grid-cols-5">
-        {pricingBenefits.map((benefit, index) => {
+        {benefits.map((benefit, index) => {
           const Icon = benefitIcons[index];
 
           return (
             <article
               key={benefit.title}
-              className={`flex items-start gap-4 p-7 text-left ${
-                index !== pricingBenefits.length - 1
+              className={`flex items-start gap-4 p-7 text-start ${
+                index !== benefits.length - 1
                   ? "border-b border-border-muted md:border-b-0 md:border-r"
                   : ""
               }`}

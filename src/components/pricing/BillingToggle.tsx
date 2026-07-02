@@ -1,6 +1,7 @@
 "use client";
 
 import { Gift } from "lucide-react";
+import { useTranslation } from "@/i18n/useTranslation";
 import type { BillingCycle } from "@/lib/currency";
 
 type BillingToggleProps = {
@@ -9,6 +10,7 @@ type BillingToggleProps = {
 };
 
 export function BillingToggle({ value, onChange }: BillingToggleProps) {
+  const { t } = useTranslation();
   const isYearly = value === "yearly";
 
   return (
@@ -24,12 +26,12 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
                 : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
             }`}
           >
-            Pay monthly
+            {t.pricing.payMonthly}
           </button>
 
           <button
             type="button"
-            aria-label="Toggle yearly billing"
+            aria-label={t.pricing.billingToggleAria}
             aria-pressed={isYearly}
             onClick={() => onChange(isYearly ? "monthly" : "yearly")}
             className="relative h-8 w-16 rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to p-1 shadow-[0_8px_18px_rgba(0,127,109,0.22)] transition hover:brightness-105"
@@ -50,14 +52,14 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
                 : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
             }`}
           >
-            Pay yearly
+            {t.pricing.payYearly}
           </button>
         </div>
 
         <div className="mt-2 flex justify-center">
           <span className="inline-flex items-center gap-1.5 rounded-xl bg-accent-lime px-3.5 py-1.5 text-[11px] font-extrabold leading-none text-brand-primary sm:text-caption">
             <Gift size={13} strokeWidth={2.4} aria-hidden="true" />
-            Save up to 20%
+            {t.pricing.saveUpTo}
           </span>
         </div>
       </div>

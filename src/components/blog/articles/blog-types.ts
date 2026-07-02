@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { LanguageCode } from "@/components/layout/site-preferences-provider";
 
 export type BlogContentBlock =
   | {
@@ -29,4 +30,26 @@ export type BlogPost = {
   publishedAt: string;
   author: string;
   content: BlogContentBlock[];
+  localized: Record<LanguageCode, LocalizedArticleContent>;
 };
+
+export type LocalizedArticleContent = {
+  category: string;
+  title: string;
+  description: string;
+  readTime: string;
+  author: string;
+  content: BlogContentBlock[];
+};
+
+export type LocalizedBlogPost = Omit<
+  BlogPost,
+  | "category"
+  | "title"
+  | "description"
+  | "readTime"
+  | "author"
+  | "content"
+  | "localized"
+> &
+  LocalizedArticleContent;
