@@ -60,12 +60,12 @@
   --text-hero: clamp(2.25rem, 10vw, 2.85rem);
   --text-hero-sm: clamp(3rem, 7vw, 3.75rem);
   --text-hero-lg: 3.55rem;
-  --text-hero-xl: 4.05rem;
+  --text-hero-xl: 40px;
   --text-section-title: clamp(2rem, 9vw, 2.6rem);
   --text-section-title-md: 40px;
   --text-section-title-lg: 42px;
-  --text-section-title-xl: 44px;
-  --text-display: 52px;
+  --text-section-title-xl: 40px;
+  --text-display: 40px;
   --text-page-title-sm: 30px;
   --text-page-title: 30px;
   --text-page-title-lg: 56px;
