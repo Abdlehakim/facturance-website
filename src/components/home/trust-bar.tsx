@@ -25,7 +25,7 @@ const highlights = [
 
 export function TrustBar() {
   return (
-    <section className="border-y border-zinc-200 bg-[#f7fbfa]">
+    <section className="border-y border-zinc-200 bg-surface-soft">
       <div className="mx-auto grid w-full max-w-304 gap-4 px-6 py-8 sm:grid-cols-2 lg:grid-cols-4 xl:px-0">
         {highlights.map((item) => {
           const Icon = item.icon;
@@ -35,7 +35,7 @@ export function TrustBar() {
               key={item.title}
               className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-zinc-900/5"
             >
-              <span className="grid size-11 place-items-center rounded-2xl bg-[#eefbf8] text-[#007f6d]">
+              <span className="grid size-11 place-items-center rounded-2xl bg-brand-muted text-brand-primary">
                 <Icon size={21} strokeWidth={2.5} />
               </span>
 

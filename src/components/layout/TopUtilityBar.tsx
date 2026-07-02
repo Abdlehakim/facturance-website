@@ -50,16 +50,17 @@ export function TopUtilityBar() {
   }, []);
 
   return (
-    <div className="h-10 border-t border-white/10 bg-[#005143] text-white">
-      <div className="mx-auto flex h-10 w-full max-w-304 items-center justify-between px-6 xl:px-0">
-        <p className="flex h-10 items-center gap-3 text-[14px] font-bold leading-none text-white">
+    <div className="min-h-10 border-t border-white/10 bg-brand-dark text-white">
+      <div className="mx-auto flex min-h-10 w-full max-w-304 flex-col items-center justify-center gap-2 px-4 py-2 sm:h-10 sm:flex-row sm:justify-between sm:gap-4 sm:px-6 sm:py-0 xl:px-0">
+        <p className="flex max-w-full items-center justify-center gap-2 text-center text-xs font-bold leading-snug text-white sm:h-10 sm:justify-start sm:gap-3 sm:text-button sm:leading-none">
           <Gift
             size={16}
             strokeWidth={2.4}
             className="shrink-0 text-lime-300"
             aria-hidden="true"
           />
-          <span className="leading-none">
+
+          <span>
             Save up to{" "}
             <span className="font-extrabold text-lime-300">20%</span> with
             annual billing
@@ -68,17 +69,18 @@ export function TopUtilityBar() {
 
         <div
           ref={menuRef}
-          className="relative z-50 flex h-10 items-center gap-5 text-[14px] font-bold leading-none text-white"
+          className="relative z-50 flex h-9 w-full max-w-[320px] items-center justify-center gap-3 text-xs font-bold leading-none text-white sm:h-10 sm:w-auto sm:max-w-none sm:justify-end sm:gap-5 sm:text-button"
         >
-          <div className="relative flex h-10 items-center">
+          <div className="relative flex h-full min-w-0 items-center">
             <button
               type="button"
               aria-haspopup="menu"
               aria-expanded={openMenu === "language"}
+              aria-label="Select language"
               onClick={() =>
                 setOpenMenu(openMenu === "language" ? null : "language")
               }
-              className="flex h-10 items-center gap-2 border-none bg-transparent p-0 text-[14px] font-bold leading-none text-white transition hover:text-lime-200"
+              className="flex h-9 min-w-0 max-w-37.5 items-center gap-1.5 rounded-md border-none bg-transparent px-1 text-xs font-bold leading-none text-white transition hover:text-lime-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200/80 sm:h-10 sm:max-w-none sm:gap-2 sm:px-0 sm:text-button"
             >
               <Globe
                 size={16}
@@ -87,7 +89,7 @@ export function TopUtilityBar() {
                 aria-hidden="true"
               />
 
-              <span className="leading-none">
+              <span className="truncate leading-none">
                 {selectedLanguage?.label ?? "English"}
               </span>
 
@@ -102,7 +104,10 @@ export function TopUtilityBar() {
             </button>
 
             {openMenu === "language" ? (
-              <div className="absolute right-0 top-11 w-44 rounded-2xl border border-[#dce7e5] bg-white p-2 text-[#071827] shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
+              <div
+                role="menu"
+                className="absolute left-1/2 top-10 w-[min(11rem,calc(100vw-2rem))] -translate-x-1/2 rounded-2xl border border-border-muted bg-white p-2 text-text-strong shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5 sm:left-auto sm:right-0 sm:top-11 sm:w-44 sm:translate-x-0"
+              >
                 {languageOptions.map((option) => {
                   const isSelected = option.code === language;
 
@@ -110,20 +115,26 @@ export function TopUtilityBar() {
                     <button
                       key={option.code}
                       type="button"
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                      role="menuitem"
+                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
                         isSelected
-                          ? "bg-[#e8f6f3] text-[#007f6d]"
-                          : "text-[#071827] hover:bg-[#f6fbfa]"
+                          ? "bg-brand-soft text-brand-primary"
+                          : "text-text-strong hover:bg-surface-hover"
                       }`}
                       onClick={() => {
                         setLanguage(option.code as LanguageCode);
                         setOpenMenu(null);
                       }}
                     >
-                      <span>{option.label}</span>
+                      <span className="truncate">{option.label}</span>
 
                       {isSelected ? (
-                        <Check size={15} strokeWidth={2.5} aria-hidden="true" />
+                        <Check
+                          size={15}
+                          strokeWidth={2.5}
+                          className="shrink-0"
+                          aria-hidden="true"
+                        />
                       ) : null}
                     </button>
                   );
@@ -132,19 +143,20 @@ export function TopUtilityBar() {
             ) : null}
           </div>
 
-          <span className="h-5 w-px bg-white/35" aria-hidden="true" />
+          <span className="h-5 w-px shrink-0 bg-white/35" aria-hidden="true" />
 
-          <div className="relative flex h-10 items-center">
+          <div className="relative flex h-full min-w-0 items-center">
             <button
               type="button"
               aria-haspopup="menu"
               aria-expanded={openMenu === "currency"}
+              aria-label="Select currency"
               onClick={() =>
                 setOpenMenu(openMenu === "currency" ? null : "currency")
               }
-              className="flex h-10 items-center gap-2 border-none bg-transparent p-0 text-[14px] font-bold leading-none text-white transition hover:text-lime-200"
+              className="flex h-9 min-w-0 max-w-35 items-center gap-1.5 rounded-md border-none bg-transparent px-1 text-xs font-bold leading-none text-white transition hover:text-lime-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-200/80 sm:h-10 sm:max-w-none sm:gap-2 sm:px-0 sm:text-button"
             >
-              <span className="leading-none">
+              <span className="truncate leading-none">
                 {selectedCurrency
                   ? `${selectedCurrency.code} (${selectedCurrency.symbol})`
                   : "EUR (€)"}
@@ -161,7 +173,10 @@ export function TopUtilityBar() {
             </button>
 
             {openMenu === "currency" ? (
-              <div className="absolute right-0 top-11 w-44 rounded-2xl border border-[#dce7e5] bg-white p-2 text-[#071827] shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5">
+              <div
+                role="menu"
+                className="absolute left-1/2 top-10 w-[min(11rem,calc(100vw-2rem))] -translate-x-1/2 rounded-2xl border border-border-muted bg-white p-2 text-text-strong shadow-[0_22px_70px_rgba(15,23,42,0.18)] ring-1 ring-black/5 sm:left-auto sm:right-0 sm:top-11 sm:w-44 sm:translate-x-0"
+              >
                 {currencyOptions.map((option) => {
                   const isSelected = option.code === currency;
 
@@ -169,22 +184,28 @@ export function TopUtilityBar() {
                     <button
                       key={option.code}
                       type="button"
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                      role="menuitem"
+                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
                         isSelected
-                          ? "bg-[#e8f6f3] text-[#007f6d]"
-                          : "text-[#071827] hover:bg-[#f6fbfa]"
+                          ? "bg-brand-soft text-brand-primary"
+                          : "text-text-strong hover:bg-surface-hover"
                       }`}
                       onClick={() => {
                         setCurrency(option.code as CurrencyCode);
                         setOpenMenu(null);
                       }}
                     >
-                      <span>
+                      <span className="truncate">
                         {option.code} ({option.symbol})
                       </span>
 
                       {isSelected ? (
-                        <Check size={15} strokeWidth={2.5} aria-hidden="true" />
+                        <Check
+                          size={15}
+                          strokeWidth={2.5}
+                          className="shrink-0"
+                          aria-hidden="true"
+                        />
                       ) : null}
                     </button>
                   );

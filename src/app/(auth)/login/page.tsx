@@ -10,7 +10,7 @@ export default function LoginPage() {
   return (
     <section className="bg-white py-20">
       <div className="mx-auto w-full max-w-md px-4 sm:px-6">
-        <div className="rounded-lg border border-zinc-200 bg-[#f7f9fc] p-6">
+        <div className="rounded-lg border border-zinc-200 bg-surface-page p-6">
           <p className="text-sm font-semibold uppercase text-teal-700">
             Welcome back
           </p>
@@ -36,7 +36,7 @@ export default function LoginPage() {
               />
             </label>
             <button
-              className="rounded-md bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-700"
+              className="btn btn-primary btn-md rounded-md bg-teal-600 py-3 font-semibold hover:bg-teal-700"
               type="button"
             >
               Login

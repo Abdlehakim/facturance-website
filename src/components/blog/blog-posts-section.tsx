@@ -7,7 +7,7 @@ export function BlogPostsSection() {
     <div className="mx-auto w-full max-w-304 px-6 pb-20 xl:px-0">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#007f6d]">
+          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
             Latest articles
           </p>
 
@@ -18,7 +18,7 @@ export function BlogPostsSection() {
 
         <Link
           href="/contact"
-          className="inline-flex h-12 cursor-pointer items-center justify-center gap-3 rounded-2xl border border-zinc-300 bg-white px-6 text-sm font-extrabold text-zinc-950 transition hover:-translate-y-0.5 hover:border-[#007f6d] hover:text-[#007f6d]"
+          className="btn btn-outline btn-md btn-icon min-h-12 px-6 font-extrabold"
         >
           Suggest a topic
           <ArrowRight size={17} strokeWidth={2.7} />
@@ -33,14 +33,14 @@ export function BlogPostsSection() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group cursor-pointer rounded-4xl border border-zinc-200 bg-[#f8fbfa] p-6 transition hover:-translate-y-1 hover:border-[#8edbd0] hover:bg-white hover:shadow-[0_26px_75px_rgba(0,127,109,0.11)]"
+              className="group cursor-pointer rounded-4xl border border-zinc-200 bg-surface-muted p-6 transition hover:-translate-y-1 hover:border-border-brand-hover hover:bg-white hover:shadow-[0_26px_75px_rgba(0,127,109,0.11)]"
             >
               <div className="flex items-start justify-between gap-4">
-                <span className="grid size-12 place-items-center rounded-2xl bg-white text-[#007f6d] shadow-sm transition group-hover:bg-[#007f6d] group-hover:text-white">
+                <span className="grid size-12 place-items-center rounded-2xl bg-white text-brand-primary shadow-sm transition group-hover:bg-brand-primary group-hover:text-white">
                   <Icon size={22} strokeWidth={2.5} />
                 </span>
 
-                <span className="rounded-full bg-[#eefbf8] px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#007f6d]">
+                <span className="rounded-full bg-brand-muted px-3 py-1 text-badge font-extrabold uppercase tracking-widest text-brand-primary">
                   {post.category}
                 </span>
               </div>
@@ -58,7 +58,7 @@ export function BlogPostsSection() {
                   {post.readTime}
                 </span>
 
-                <span className="inline-flex items-center gap-2 text-sm font-extrabold text-[#007f6d]">
+                <span className="inline-flex items-center gap-2 text-sm font-extrabold text-brand-primary">
                   Read
                   <ArrowRight
                     size={16}

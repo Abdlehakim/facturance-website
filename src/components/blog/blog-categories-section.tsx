@@ -10,9 +10,9 @@ export function BlogCategoriesSection() {
           return (
             <div
               key={category.label}
-              className="group flex cursor-pointer items-center gap-4 rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[#8edbd0] hover:bg-[#f7fbfa]"
+              className="group flex cursor-pointer items-center gap-4 rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover hover:bg-surface-soft"
             >
-              <span className="grid size-12 place-items-center rounded-2xl bg-[#eefbf8] text-[#007f6d] transition group-hover:bg-[#007f6d] group-hover:text-white">
+              <span className="grid size-12 place-items-center rounded-2xl bg-brand-muted text-brand-primary transition group-hover:bg-brand-primary group-hover:text-white">
                 <Icon size={22} strokeWidth={2.5} />
               </span>
 

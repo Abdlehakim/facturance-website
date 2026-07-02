@@ -10,7 +10,7 @@ export function PricingFaq() {
 
   return (
     <section className="mx-auto mt-17.5 w-full max-w-304 px-6 xl:px-0">
-      <h2 className="text-center text-[30px] font-extrabold tracking-[-0.03em] text-[#071827]">
+      <h2 className="text-center text-page-title-sm font-extrabold tracking-[-0.03em] text-text-strong">
         Frequently asked questions
       </h2>
 
@@ -20,20 +20,20 @@ export function PricingFaq() {
             {column.map((faq) => (
               <details
                 key={faq.question}
-                className="group overflow-hidden rounded-xl border border-[#dce7e5] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
+                className="group overflow-hidden rounded-xl border border-border-muted bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
               >
-                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 px-7 text-[15px] font-bold text-[#071827] transition hover:bg-[#f8fffd]">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 px-7 text-body-sm font-bold text-text-strong transition hover:bg-surface-hover-bright">
                   {faq.question}
 
                   <ChevronDown
                     size={20}
                     strokeWidth={2.2}
-                    className="shrink-0 text-[#071827] transition group-open:rotate-180"
+                    className="shrink-0 text-text-strong transition group-open:rotate-180"
                     aria-hidden="true"
                   />
                 </summary>
 
-                <p className="border-t border-[#e6eeec] px-7 pb-6 pt-4 text-[14px] font-medium leading-7 text-[#506070]">
+                <p className="border-t border-border-soft px-7 pb-6 pt-4 text-button font-medium leading-7 text-text-muted">
                   {faq.answer}
                 </p>
               </details>

@@ -20,7 +20,7 @@ export function IconBadge({ icon: Icon, size, className }: IconBadgeProps) {
   return (
     <span
       className={[
-        "grid place-items-center rounded-full bg-[#e8f6f3] text-[#007f6d]",
+        "grid place-items-center rounded-full bg-brand-soft text-brand-primary",
         badgeSizeClasses[size],
         className,
       ]

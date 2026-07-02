@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -12,22 +14,61 @@ const navItems = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (!headerRef.current) return;
+
+      if (!headerRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
-    <header className="h-16 border-b border-[#e6eeec] bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-full w-full max-w-[1216px] items-center justify-between px-6 xl:px-0">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-[#009b84] to-[#006b5b] text-xl font-bold text-white shadow-sm">
+    <header
+      ref={headerRef}
+      className="relative z-50 border-b border-border-soft bg-white/95 backdrop-blur"
+    >
+      <div className="mx-auto flex min-h-16 w-full max-w-304 items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 xl:px-0">
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className="flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-3"
+          aria-label="Facturance home"
+        >
+          <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-lg font-bold text-white shadow-sm sm:h-9 sm:w-9 sm:text-xl">
             F
           </span>
-          <span className="text-[22px] font-bold tracking-tight text-[#071827]">
+
+          <span className="truncate text-logo font-bold tracking-tight text-text-strong sm:text-panel-title">
             Facturance
           </span>
         </Link>
 
         <nav
-          className="hidden h-full items-center gap-10 md:flex"
-          aria-label="Primary"
+          className="hidden h-16 items-center gap-7 lg:flex xl:gap-10"
+          aria-label="Primary navigation"
         >
           {navItems.map((item) => {
             const isActive =
@@ -39,10 +80,11 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex h-full items-center border-b-2 text-[15px] font-medium transition ${
+                aria-current={isActive ? "page" : undefined}
+                className={`flex h-full items-center border-b-2 text-nav font-medium transition ${
                   isActive
-                    ? "border-[#007f6d] text-[#007f6d]"
-                    : "border-transparent text-[#506070] hover:text-[#071827]"
+                    ? "border-brand-primary text-brand-primary"
+                    : "border-transparent text-text-muted hover:text-text-strong"
                 }`}
               >
                 {item.label}
@@ -51,19 +93,91 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
           <Link
             href="/login"
-            className="hidden text-sm font-semibold text-[#071827] transition hover:text-[#007f6d] sm:inline-flex"
+            onClick={closeMenu}
+            className="btn btn-ghost hidden px-0 text-sm font-semibold focus-visible:ring-brand-primary/25 lg:inline-flex"
           >
             Login
           </Link>
+
           <Link
             href="/register"
-            className="inline-flex h-9 items-center justify-center rounded-lg bg-gradient-to-r from-[#008f7a] to-[#006b5b] px-6 text-sm font-semibold text-white shadow-[0_10px_25px_rgba(0,127,109,0.25)] transition hover:from-[#007f6d] hover:to-[#00594c]"
+            onClick={closeMenu}
+            className="btn btn-sm hidden bg-linear-to-r from-brand-gradient-from to-brand-gradient-to font-semibold text-white shadow-[0_10px_25px_rgba(0,127,109,0.25)] hover:from-brand-primary hover:to-brand-gradient-to-dark sm:inline-flex lg:min-h-9 lg:px-6"
           >
             Start free
           </Link>
+
+          <button
+            type="button"
+            aria-label={
+              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-controls="mobile-navigation"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((value) => !value)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border-subtle bg-white text-text-strong transition hover:border-brand-primary hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 lg:hidden"
+          >
+            {isMenuOpen ? (
+              <X size={20} strokeWidth={2.4} aria-hidden="true" />
+            ) : (
+              <Menu size={20} strokeWidth={2.4} aria-hidden="true" />
+            )}
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobile-navigation"
+        className={`absolute left-0 top-full w-full border-t border-border-soft bg-white px-4 py-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-6 lg:hidden ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="mx-auto w-full max-w-304">
+          <nav className="grid gap-1" aria-label="Mobile navigation">
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex min-h-11 items-center rounded-xl px-4 text-nav font-semibold transition ${
+                    isActive
+                      ? "bg-brand-soft text-brand-primary"
+                      : "text-text-muted hover:bg-surface-hover hover:text-text-strong"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="mt-4 grid gap-3 border-t border-border-soft pt-4 sm:grid-cols-2 lg:hidden">
+            <Link
+              href="/login"
+              onClick={closeMenu}
+              className="btn btn-secondary btn-md font-semibold focus-visible:ring-brand-primary/25"
+            >
+              Login
+            </Link>
+
+            <Link
+              href="/register"
+              onClick={closeMenu}
+              className="btn btn-md bg-linear-to-r from-brand-gradient-from to-brand-gradient-to font-semibold text-white shadow-[0_10px_25px_rgba(0,127,109,0.25)] hover:from-brand-primary hover:to-brand-gradient-to-dark"
+            >
+              Start free
+            </Link>
+          </div>
         </div>
       </div>
     </header>

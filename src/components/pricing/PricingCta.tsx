@@ -45,11 +45,11 @@ export function PricingCta() {
 
         <div className="relative z-10 min-h-107.5 px-7 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
           <div className="relative z-20 max-w-140">
-            <h2 className="max-w-135 text-[40px] font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-[52px] lg:text-[40px]">
+            <h2 className="max-w-135 text-section-title-md font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-display lg:text-section-title-md">
               Ready to simplify your business?
             </h2>
 
-            <p className="mt-7 max-w-140 text-[17px] font-semibold leading-8 text-white/90 sm:text-[18px]">
+            <p className="mt-7 max-w-140 text-body-lg font-semibold leading-8 text-white/90 sm:text-card-title">
               Join thousands of businesses using Facturance to manage invoices,
               inventory, and more.
             </p>
@@ -57,7 +57,7 @@ export function PricingCta() {
             <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
               <Link
                 href="/register"
-                className="inline-flex h-15 min-w-55 items-center justify-center gap-4 rounded-2xl bg-white px-8 text-[17px] font-extrabold text-[#007f6d] shadow-[0_18px_35px_rgba(0,0,0,0.16)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_24px_45px_rgba(0,0,0,0.22)]"
+                className="btn btn-white btn-lg min-h-15 min-w-55 gap-4 px-8 text-body-lg font-extrabold shadow-[0_18px_35px_rgba(0,0,0,0.16)] duration-200 hover:shadow-[0_24px_45px_rgba(0,0,0,0.22)] sm:min-h-15 sm:px-8 sm:text-body-lg"
               >
                 Start free
                 <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
@@ -65,14 +65,14 @@ export function PricingCta() {
 
               <Link
                 href="/contact"
-                className="inline-flex h-15 min-w-55 items-center justify-center gap-4 rounded-2xl border border-white/50 bg-white/8 px-8 text-[17px] font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:bg-white/13"
+                className="btn btn-lg min-h-15 min-w-55 gap-4 border border-white/50 bg-white/8 px-8 text-body-lg font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md duration-200 hover:-translate-y-0.5 hover:bg-white/13 sm:min-h-15 sm:px-8 sm:text-body-lg"
               >
                 Book a demo
                 <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
               </Link>
             </div>
 
-            <div className="mt-12 flex flex-col gap-4 text-[16px] font-bold text-white/92 sm:flex-row sm:items-center sm:gap-10">
+            <div className="mt-12 flex flex-col gap-4 text-body font-bold text-white/92 sm:flex-row sm:items-center sm:gap-10">
               {checks.map((check) => (
                 <span key={check} className="flex items-center gap-3">
                   <span className="flex size-6 items-center justify-center rounded-full bg-white/10">

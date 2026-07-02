@@ -109,19 +109,19 @@ const trustItems = [
 export default function ContactPage() {
   return (
     <section className="select-none bg-white">
-      <div className="relative overflow-hidden border-b border-zinc-200 bg-[#f7fbfa]">
+      <div className="relative overflow-hidden border-b border-zinc-200 bg-surface-soft">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(0,127,109,0.07)_1.2px,transparent_1.2px)] bg-size-[28px_28px]" />
         <div className="absolute -right-32 -top-32 h-120 w-120 rounded-full bg-teal-100 blur-3xl" />
         <div className="absolute -bottom-32 left-0 h-88 w-88 rounded-full bg-emerald-50 blur-3xl" />
 
         <div className="relative mx-auto grid w-full max-w-304 gap-12 px-6 py-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-center xl:px-0">
           <div>
-            <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#bde7df] bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-[#007f6d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8edbd0]">
+            <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover">
               <Sparkles size={15} strokeWidth={2.6} />
               Contact Facturance
             </div>
 
-            <h1 className="mt-6 max-w-150 text-[42px] font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-[40px]">
+            <h1 className="mt-6 max-w-150 text-section-title-lg font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-section-title-md">
               Build your finance platform with a clear path.
             </h1>
 
@@ -135,7 +135,7 @@ export default function ContactPage() {
               <Link
                 href="https://wa.me/21654555688"
                 target="_blank"
-                className="inline-flex h-14 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#007f6d] px-6 text-sm font-extrabold text-white shadow-xl shadow-teal-900/15 transition hover:-translate-y-0.5 hover:bg-[#006f5f]"
+                className="btn btn-primary btn-lg btn-icon min-h-14 px-6 text-sm font-extrabold shadow-xl shadow-teal-900/15 hover:-translate-y-0.5 hover:bg-brand-primary-hover-alt sm:min-h-14 sm:px-6 sm:text-sm"
               >
                 <MessageCircle size={20} strokeWidth={2.6} />
                 WhatsApp us
@@ -143,7 +143,7 @@ export default function ContactPage() {
 
               <Link
                 href="mailto:contact@smartwebify.com"
-                className="inline-flex h-14 cursor-pointer items-center justify-center gap-3 rounded-2xl border border-zinc-300 bg-white px-6 text-sm font-extrabold text-zinc-950 shadow-sm transition hover:-translate-y-0.5 hover:border-[#007f6d] hover:text-[#007f6d]"
+                className="btn btn-outline btn-lg btn-icon min-h-14 px-6 text-sm font-extrabold shadow-sm sm:min-h-14 sm:px-6 sm:text-sm"
               >
                 <Mail size={19} strokeWidth={2.6} />
                 Send email
@@ -160,21 +160,21 @@ export default function ContactPage() {
                   key={method.label}
                   href={method.href}
                   target={method.href.startsWith("http") ? "_blank" : undefined}
-                  className="group rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-[#8edbd0] hover:shadow-[0_26px_75px_rgba(0,127,109,0.12)]"
+                  className="group rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_18px_55px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-border-brand-hover hover:shadow-[0_26px_75px_rgba(0,127,109,0.12)]"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="grid size-13 place-items-center rounded-2xl bg-[#eefbf8] text-[#007f6d] transition group-hover:bg-[#007f6d] group-hover:text-white">
+                    <span className="grid size-13 place-items-center rounded-2xl bg-brand-muted text-brand-primary transition group-hover:bg-brand-primary group-hover:text-white">
                       <Icon size={23} strokeWidth={2.5} />
                     </span>
 
                     <ArrowRight
                       size={18}
                       strokeWidth={2.7}
-                      className="mt-1 text-zinc-400 transition group-hover:translate-x-1 group-hover:text-[#007f6d]"
+                      className="mt-1 text-zinc-400 transition group-hover:translate-x-1 group-hover:text-brand-primary"
                     />
                   </div>
 
-                  <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#007f6d]">
+                  <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary">
                     {method.label}
                   </p>
 
@@ -194,7 +194,7 @@ export default function ContactPage() {
 
       <div className="mx-auto grid w-full max-w-304 gap-10 px-6 py-18 lg:grid-cols-[0.88fr_1.12fr] xl:px-0">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#007f6d]">
+          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
             Contact details
           </p>
 
@@ -214,9 +214,9 @@ export default function ContactPage() {
               return (
                 <div
                   key={item.label}
-                  className="flex items-center gap-4 rounded-3xl border border-zinc-200 bg-[#f8fbfa] p-5"
+                  className="flex items-center gap-4 rounded-3xl border border-zinc-200 bg-surface-muted p-5"
                 >
-                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white text-[#007f6d] shadow-sm">
+                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white text-brand-primary shadow-sm">
                     <Icon size={22} strokeWidth={2.5} />
                   </span>
 
@@ -234,9 +234,9 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <form className="rounded-4xl border border-zinc-200 bg-[#f8fbfa] p-6 shadow-[0_24px_70px_rgba(15,23,42,0.07)] sm:p-8">
+        <form className="rounded-4xl border border-zinc-200 bg-surface-muted p-6 shadow-[0_24px_70px_rgba(15,23,42,0.07)] sm:p-8">
           <div className="mb-7">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-[#007f6d] shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary shadow-sm">
               <Send size={14} strokeWidth={2.7} />
               Send a message
             </div>
@@ -256,7 +256,7 @@ export default function ContactPage() {
               <label className="grid gap-2 text-sm font-bold text-zinc-800">
                 Name
                 <input
-                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                   type="text"
                   name="name"
                   placeholder="Your name"
@@ -266,7 +266,7 @@ export default function ContactPage() {
               <label className="grid gap-2 text-sm font-bold text-zinc-800">
                 Email
                 <input
-                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                   type="email"
                   name="email"
                   placeholder="you@example.com"
@@ -278,7 +278,7 @@ export default function ContactPage() {
               <label className="grid gap-2 text-sm font-bold text-zinc-800">
                 Phone / WhatsApp
                 <input
-                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                   type="tel"
                   name="phone"
                   placeholder="+216 ..."
@@ -288,7 +288,7 @@ export default function ContactPage() {
               <label className="grid gap-2 text-sm font-bold text-zinc-800">
                 Company
                 <input
-                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                  className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition placeholder:text-zinc-400 focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                   type="text"
                   name="company"
                   placeholder="Company name"
@@ -299,7 +299,7 @@ export default function ContactPage() {
             <label className="grid gap-2 text-sm font-bold text-zinc-800">
               What do you need?
               <select
-                className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                className="h-13 rounded-2xl border border-zinc-300 bg-white px-4 text-sm outline-none transition focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                 name="topic"
                 defaultValue=""
               >
@@ -318,14 +318,14 @@ export default function ContactPage() {
             <label className="grid gap-2 text-sm font-bold text-zinc-800">
               Message
               <textarea
-                className="min-h-38 resize-none rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-sm leading-6 outline-none transition placeholder:text-zinc-400 focus:border-[#007f6d] focus:ring-4 focus:ring-[#007f6d]/10"
+                className="min-h-38 resize-none rounded-2xl border border-zinc-300 bg-white px-4 py-4 text-sm leading-6 outline-none transition placeholder:text-zinc-400 focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/10"
                 name="message"
                 placeholder="Tell us about your project, current workflow, or question..."
               />
             </label>
 
             <button
-              className="inline-flex h-14 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-[#007f6d] px-7 text-sm font-extrabold text-white shadow-xl shadow-teal-900/15 transition hover:-translate-y-0.5 hover:bg-[#006f5f]"
+              className="btn btn-primary btn-lg btn-icon min-h-14 px-7 text-sm font-extrabold shadow-xl shadow-teal-900/15 hover:-translate-y-0.5 hover:bg-brand-primary-hover-alt sm:min-h-14 sm:px-7 sm:text-sm"
               type="button"
             >
               Send message
@@ -340,11 +340,11 @@ export default function ContactPage() {
         </form>
       </div>
 
-      <div className="bg-[#eaf8f5]">
+      <div className="bg-surface-brand">
         <div className="mx-auto w-full max-w-304 px-6 py-18 xl:px-0">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#007f6d]">
+              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
                 We can help with
               </p>
 
@@ -353,7 +353,7 @@ export default function ContactPage() {
               </h2>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#bde7df] bg-white px-4 py-2 text-sm font-extrabold text-[#007f6d]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-sm font-extrabold text-brand-primary">
               <BadgeCheck size={18} strokeWidth={2.6} />
               Clear technical discussion
             </div>
@@ -363,9 +363,9 @@ export default function ContactPage() {
             {supportTopics.map((topic) => (
               <div
                 key={topic}
-                className="flex cursor-pointer items-center gap-4 rounded-3xl border border-[#bde7df] bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-teal-900/8"
+                className="flex cursor-pointer items-center gap-4 rounded-3xl border border-border-brand bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-teal-900/8"
               >
-                <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-[#007f6d] text-white">
+                <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-brand-primary text-white">
                   <CheckCircle2 size={21} strokeWidth={2.7} />
                 </span>
 
@@ -384,9 +384,9 @@ export default function ContactPage() {
             return (
               <div
                 key={item.title}
-                className="group rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-[#8edbd0] hover:shadow-[0_26px_75px_rgba(0,127,109,0.11)]"
+                className="group rounded-4xl border border-zinc-200 bg-white p-6 shadow-[0_20px_60px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-border-brand-hover hover:shadow-[0_26px_75px_rgba(0,127,109,0.11)]"
               >
-                <span className="grid size-14 place-items-center rounded-2xl bg-[#eefbf8] text-[#007f6d] transition group-hover:bg-[#007f6d] group-hover:text-white">
+                <span className="grid size-14 place-items-center rounded-2xl bg-brand-muted text-brand-primary transition group-hover:bg-brand-primary group-hover:text-white">
                   <Icon size={25} strokeWidth={2.5} />
                 </span>
 
@@ -402,7 +402,7 @@ export default function ContactPage() {
           })}
         </div>
 
-        <div className="mt-10 relative overflow-hidden rounded-4xl bg-linear-to-br from-[#00342e] via-[#005f52] to-[#00917b] p-8 text-white shadow-[0_30px_90px_rgba(0,63,54,0.26)] sm:p-12">
+        <div className="mt-10 relative overflow-hidden rounded-4xl bg-linear-to-br from-brand-deep via-brand-forest to-brand-vivid p-8 text-white shadow-[0_30px_90px_rgba(0,63,54,0.26)] sm:p-12">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(255,255,255,0.13)_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-35" />
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
@@ -426,7 +426,7 @@ export default function ContactPage() {
               <Link
                 href="https://wa.me/21654555688"
                 target="_blank"
-                className="inline-flex h-14 shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl bg-white px-7 text-sm font-extrabold text-[#007f6d] shadow-xl shadow-black/10 transition hover:-translate-y-0.5"
+                className="btn btn-white btn-lg min-h-14 shrink-0 gap-3 px-7 text-sm font-extrabold sm:min-h-14 sm:px-7 sm:text-sm"
               >
                 WhatsApp
                 <MessageCircle size={19} strokeWidth={2.7} />
@@ -434,7 +434,7 @@ export default function ContactPage() {
 
               <Link
                 href="mailto:contact@smartwebify.com"
-                className="inline-flex h-14 shrink-0 cursor-pointer items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/8 px-7 text-sm font-extrabold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/12"
+                className="btn btn-lg min-h-14 shrink-0 gap-3 border border-white/20 bg-white/8 px-7 text-sm font-extrabold text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/12 sm:min-h-14 sm:px-7 sm:text-sm"
               >
                 Email
                 <Mail size={19} strokeWidth={2.7} />
