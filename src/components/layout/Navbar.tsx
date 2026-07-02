@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -12,10 +13,111 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ];
 
+type MobileNavigationModalProps = {
+  isOpen: boolean;
+  pathname: string;
+  onClose: () => void;
+  modalRef: RefObject<HTMLDivElement | null>;
+};
+
+function MobileNavigationModal({
+  isOpen,
+  pathname,
+  onClose,
+  modalRef,
+}: MobileNavigationModalProps) {
+  if (!isOpen || typeof document === "undefined") return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-99999 lg:hidden">
+      <button
+        type="button"
+        aria-label="Close navigation menu"
+        className="absolute inset-0 h-full w-full bg-black/60 backdrop-blur-md"
+        onClick={onClose}
+      />
+
+      <div className="absolute inset-0 overflow-y-auto px-4 pb-6 pt-24">
+        <div
+          ref={modalRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          className="mx-auto w-full max-w-md rounded-[2rem] border border-white/20 bg-white/95 p-5 text-text-strong shadow-2xl backdrop-blur-md"
+        >
+          <div className="mx-auto mb-5 h-1.5 w-14 rounded-full bg-zinc-300" />
+
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <Link
+              href="/"
+              onClick={onClose}
+              className="flex min-w-0 items-center gap-3"
+              aria-label="Facturance home"
+            >
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-xl font-bold text-white shadow-sm">
+                F
+              </span>
+
+              <span className="truncate text-panel-title font-extrabold tracking-tight text-text-strong">
+                Facturance
+              </span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="grid size-11 shrink-0 place-items-center rounded-full bg-zinc-100 text-text-strong transition hover:bg-zinc-200"
+              aria-label="Close navigation menu"
+            >
+              <X size={22} strokeWidth={2.5} aria-hidden="true" />
+            </button>
+          </div>
+
+          <nav className="grid gap-2.5" aria-label="Mobile navigation">
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={onClose}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex min-h-14 items-center rounded-2xl border px-4 text-nav font-bold transition ${
+                    isActive
+                      ? "border-brand-primary/25 bg-brand-soft text-brand-primary"
+                      : "border-border-soft bg-white text-text-muted hover:bg-surface-hover hover:text-text-strong"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="mt-5 grid gap-3 border-t border-border-soft pt-5">
+            <Link href="/login" onClick={onClose} className="btn btn-outline btn-md">
+              Login
+            </Link>
+
+            <Link href="/register" onClick={onClose} className="btn btn-primary btn-md">
+              Start free
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   function closeMenu() {
     setIsMenuOpen(false);
@@ -39,11 +141,23 @@ export function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    if (typeof window === "undefined") return;
+
+    const isMobileOrTablet = window.matchMedia("(max-width: 1023px)").matches;
+    if (!isMobileOrTablet) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isMenuOpen]);
+
   return (
-    <header
-      ref={headerRef}
-      className="relative z-900 isolate border-b border-border-soft bg-white/95 backdrop-blur"
-    >
+    <header className="relative z-900 border-b border-border-soft bg-white/95 backdrop-blur">
       <div className="mx-auto flex min-h-16 w-full max-w-304 items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 xl:px-0">
         <Link
           href="/"
@@ -111,12 +225,8 @@ export function Navbar() {
             }
             aria-controls="mobile-navigation"
             aria-expanded={isMenuOpen}
-            onPointerDownCapture={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              toggleMenu();
-            }}
-            className="inline-flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg border border-border-subtle bg-white text-text-strong transition hover:border-brand-primary hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 lg:hidden"
+            onClick={toggleMenu}
+            className="inline-flex size-10 touch-manipulation items-center justify-center rounded-lg border border-border-subtle bg-white text-text-strong transition hover:border-brand-primary hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 lg:hidden"
           >
             {isMenuOpen ? (
               <X size={20} strokeWidth={2.4} aria-hidden="true" />
@@ -127,57 +237,12 @@ export function Navbar() {
         </div>
       </div>
 
-      {isMenuOpen ? (
-        <div
-          id="mobile-navigation"
-          className="relative z-901 border-t border-border-soft bg-white px-4 py-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-6 lg:hidden"
-        >
-          <div className="mx-auto w-full max-w-304">
-            <nav className="grid gap-1" aria-label="Mobile navigation">
-              {navItems.map((item) => {
-                const isActive =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={closeMenu}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`flex min-h-11 items-center rounded-xl px-4 text-nav font-semibold transition ${
-                      isActive
-                        ? "bg-brand-soft text-brand-primary"
-                        : "text-text-muted hover:bg-surface-hover hover:text-text-strong"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="mt-4 grid gap-3 border-t border-border-soft pt-4 sm:grid-cols-2 lg:hidden">
-              <Link
-                href="/login"
-                onClick={closeMenu}
-                className="btn btn-outline btn-md"
-              >
-                Login
-              </Link>
-
-              <Link
-                href="/register"
-                onClick={closeMenu}
-                className="btn btn-primary btn-md"
-              >
-                Start free
-              </Link>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      <MobileNavigationModal
+        isOpen={isMenuOpen}
+        pathname={pathname}
+        onClose={closeMenu}
+        modalRef={modalRef}
+      />
     </header>
   );
 }
