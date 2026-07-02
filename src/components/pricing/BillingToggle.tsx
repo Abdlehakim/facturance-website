@@ -12,46 +12,54 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
   const isYearly = value === "yearly";
 
   return (
-    <div className="mt-8 flex items-center justify-center">
-      <div className="flex flex-wrap items-center justify-center gap-5 rounded-full border border-border-muted bg-white/80 px-5 py-3 shadow-[0_12px_35px_rgba(15,23,42,0.06)] backdrop-blur">
-        <button
-          type="button"
-          onClick={() => onChange("monthly")}
-          className={`text-body-sm font-bold transition ${
-            !isYearly ? "text-text-strong" : "text-text-soft hover:text-text-strong"
-          }`}
-        >
-          Pay monthly
-        </button>
-
-        <button
-          type="button"
-          aria-label="Toggle yearly billing"
-          aria-pressed={isYearly}
-          onClick={() => onChange(isYearly ? "monthly" : "yearly")}
-          className="relative h-8 w-16 rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to p-1 shadow-inner shadow-black/10 transition hover:brightness-105"
-        >
-          <span
-            className={`block h-6 w-6 rounded-full bg-white shadow-[0_4px_12px_rgba(0,0,0,0.18)] transition-transform duration-200 ${
-              isYearly ? "translate-x-8" : "translate-x-0"
+    <div className="flex w-full justify-center sm:px-0">
+      <div className="w-full max-w-[315px] rounded-2xl border border-border-muted bg-white/95 p-3 shadow-[0_16px_42px_rgba(15,23,42,0.07)] backdrop-blur sm:max-w-[390px] sm:rounded-3xl">
+        <div className="grid grid-cols-[1fr_64px_1fr] items-center gap-2">
+          <button
+            type="button"
+            onClick={() => onChange("monthly")}
+            className={`flex h-10 items-center justify-center rounded-xl px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
+              !isYearly
+                ? "bg-brand-soft text-text-strong"
+                : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
             }`}
-          />
-        </button>
+          >
+            Pay monthly
+          </button>
 
-        <button
-          type="button"
-          onClick={() => onChange("yearly")}
-          className={`text-body-sm font-bold transition ${
-            isYearly ? "text-text-strong" : "text-text-soft hover:text-text-strong"
-          }`}
-        >
-          Pay yearly
-        </button>
+          <button
+            type="button"
+            aria-label="Toggle yearly billing"
+            aria-pressed={isYearly}
+            onClick={() => onChange(isYearly ? "monthly" : "yearly")}
+            className="relative h-8 w-16 rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to p-1 shadow-[0_8px_18px_rgba(0,127,109,0.22)] transition hover:brightness-105"
+          >
+            <span
+              className={`block h-6 w-6 rounded-full bg-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] transition-transform duration-200 ${
+                isYearly ? "translate-x-8" : "translate-x-0"
+              }`}
+            />
+          </button>
 
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-lime px-4 py-1.5 text-caption font-extrabold text-brand-primary">
-          <Gift size={14} strokeWidth={2.4} aria-hidden="true" />
-          Save up to 20%
-        </span>
+          <button
+            type="button"
+            onClick={() => onChange("yearly")}
+            className={`flex h-10 items-center justify-center rounded-xl px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
+              isYearly
+                ? "bg-brand-soft text-text-strong"
+                : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
+            }`}
+          >
+            Pay yearly
+          </button>
+        </div>
+
+        <div className="mt-2 flex justify-center">
+          <span className="inline-flex items-center gap-1.5 rounded-xl bg-accent-lime px-3.5 py-1.5 text-[11px] font-extrabold leading-none text-brand-primary sm:text-caption">
+            <Gift size={13} strokeWidth={2.4} aria-hidden="true" />
+            Save up to 20%
+          </span>
+        </div>
       </div>
     </div>
   );
