@@ -16,7 +16,7 @@ function getCountryCode(request: NextRequest) {
   ).toUpperCase();
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = NextResponse.next();
 
   const countryCode = getCountryCode(request);
