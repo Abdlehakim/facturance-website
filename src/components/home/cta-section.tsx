@@ -116,7 +116,7 @@ export function CtaSection() {
               <div className="mt-7 sm:mt-8">
                 <Link
                   href="/contact"
-                  className="btn btn-white btn-lg btn-full sm:w-auto"
+                  className="btn btn-outline btn-lg btn-full sm:w-auto"
                 >
                   <span>Talk to us</span>
                   <ArrowRight

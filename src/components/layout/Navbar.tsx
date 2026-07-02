@@ -21,26 +21,20 @@ export function Navbar() {
     setIsMenuOpen(false);
   }
 
+  function toggleMenu() {
+    setIsMenuOpen((current) => !current);
+  }
+
   useEffect(() => {
-    function handlePointerDown(event: PointerEvent) {
-      if (!headerRef.current) return;
-
-      if (!headerRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    }
-
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
       }
     }
 
-    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
@@ -48,7 +42,7 @@ export function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="relative z-50 border-b border-border-soft bg-white/95 backdrop-blur"
+      className="relative z-900 isolate border-b border-border-soft bg-white/95 backdrop-blur"
     >
       <div className="mx-auto flex min-h-16 w-full max-w-304 items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 xl:px-0">
         <Link
@@ -117,8 +111,12 @@ export function Navbar() {
             }
             aria-controls="mobile-navigation"
             aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((value) => !value)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border-subtle bg-white text-text-strong transition hover:border-brand-primary hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 lg:hidden"
+            onPointerDownCapture={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              toggleMenu();
+            }}
+            className="inline-flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg border border-border-subtle bg-white text-text-strong transition hover:border-brand-primary hover:text-brand-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 lg:hidden"
           >
             {isMenuOpen ? (
               <X size={20} strokeWidth={2.4} aria-hidden="true" />
@@ -129,57 +127,57 @@ export function Navbar() {
         </div>
       </div>
 
-      <div
-        id="mobile-navigation"
-        className={`absolute left-0 top-full w-full border-t border-border-soft bg-white px-4 py-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-6 lg:hidden ${
-          isMenuOpen ? "block" : "hidden"
-        }`}
-      >
-        <div className="mx-auto w-full max-w-304">
-          <nav className="grid gap-1" aria-label="Mobile navigation">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+      {isMenuOpen ? (
+        <div
+          id="mobile-navigation"
+          className="relative z-901 border-t border-border-soft bg-white px-4 py-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:px-6 lg:hidden"
+        >
+          <div className="mx-auto w-full max-w-304">
+            <nav className="grid gap-1" aria-label="Mobile navigation">
+              {navItems.map((item) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.href);
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMenu}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`flex min-h-11 items-center rounded-xl px-4 text-nav font-semibold transition ${
-                    isActive
-                      ? "bg-brand-soft text-brand-primary"
-                      : "text-text-muted hover:bg-surface-hover hover:text-text-strong"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`flex min-h-11 items-center rounded-xl px-4 text-nav font-semibold transition ${
+                      isActive
+                        ? "bg-brand-soft text-brand-primary"
+                        : "text-text-muted hover:bg-surface-hover hover:text-text-strong"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <div className="mt-4 grid gap-3 border-t border-border-soft pt-4 sm:grid-cols-2 lg:hidden">
-            <Link
-              href="/login"
-              onClick={closeMenu}
-              className="btn btn-outline btn-md"
-            >
-              Login
-            </Link>
+            <div className="mt-4 grid gap-3 border-t border-border-soft pt-4 sm:grid-cols-2 lg:hidden">
+              <Link
+                href="/login"
+                onClick={closeMenu}
+                className="btn btn-outline btn-md"
+              >
+                Login
+              </Link>
 
-            <Link
-              href="/register"
-              onClick={closeMenu}
-              className="btn btn-primary btn-md"
-            >
-              Start free
-            </Link>
+              <Link
+                href="/register"
+                onClick={closeMenu}
+                className="btn btn-primary btn-md"
+              >
+                Start free
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </header>
   );
 }

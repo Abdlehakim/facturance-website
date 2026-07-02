@@ -68,7 +68,6 @@ export function PricingCta() {
                 className="btn btn-outline btn-lg min-w-55"
               >
                 Book a demo
-                <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
               </Link>
             </div>
 
