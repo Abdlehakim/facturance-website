@@ -15,6 +15,12 @@ import {
   type BillingCycle,
   type CurrencyCode,
 } from "@/lib/currency";
+import {
+  GEO_CURRENCY_COOKIE,
+  GEO_LANGUAGE_COOKIE,
+  isSupportedCurrency,
+  isSupportedLanguage,
+} from "@/lib/geo-preferences";
 
 export type LanguageCode = "en" | "fr" | "de" | "ar";
 
@@ -44,6 +50,22 @@ function isCurrencyCode(value: string | null): value is CurrencyCode {
 function getStoredPreference(key: string) {
   try {
     return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function getCookiePreference(key: string) {
+  if (typeof document === "undefined") return null;
+
+  const cookie = document.cookie
+    .split("; ")
+    .find((item) => item.startsWith(`${key}=`));
+
+  if (!cookie) return null;
+
+  try {
+    return decodeURIComponent(cookie.split("=").slice(1).join("="));
   } catch {
     return null;
   }
@@ -79,16 +101,24 @@ export function SitePreferencesProvider({
   const [hasLoadedPreferences, setHasLoadedPreferences] = useState(false);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     const savedLanguage = getStoredPreference(LANGUAGE_STORAGE_KEY);
     const savedCurrency = getStoredPreference(CURRENCY_STORAGE_KEY);
     const savedBillingCycle = getStoredPreference(BILLING_CYCLE_STORAGE_KEY);
 
+    const geoLanguage = getCookiePreference(GEO_LANGUAGE_COOKIE);
+    const geoCurrency = getCookiePreference(GEO_CURRENCY_COOKIE);
+
     if (isLanguageCode(savedLanguage)) {
       setLanguage(savedLanguage);
+    } else if (isSupportedLanguage(geoLanguage)) {
+      setLanguage(geoLanguage);
     }
 
     if (isCurrencyCode(savedCurrency)) {
       setCurrency(savedCurrency);
+    } else if (isSupportedCurrency(geoCurrency)) {
+      setCurrency(geoCurrency);
     }
 
     if (isBillingCycle(savedBillingCycle)) {
@@ -96,6 +126,7 @@ export function SitePreferencesProvider({
     }
 
     setHasLoadedPreferences(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {
