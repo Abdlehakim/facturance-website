@@ -30,19 +30,38 @@ const featureCards = [
   },
 ];
 
-function DeviceMockup({ alt }: { alt: string }) {
+function DeviceMockup({ alt, isRtl }: { alt: string; isRtl: boolean }) {
   return (
-    <div className="pointer-events-none absolute bottom-0 right-0 hidden aspect-16/10 w-[min(58%,48rem)] lg:block xl:w-200">
-      <div className="absolute right-[12%] top-[12%] h-[58%] w-[58%] rounded-full bg-emerald-300/18 blur-3xl" />
-      <div className="absolute right-[10%] top-[8%] h-[68%] w-[68%] rounded-full border border-emerald-300/12" />
-      <div className="absolute right-[24%] top-[22%] h-[48%] w-[48%] rounded-full border border-emerald-300/12" />
+    <div
+      className={`pointer-events-none absolute bottom-0 z-10 hidden aspect-16/10 w-[min(56%,48rem)] overflow-visible lg:block xl:w-200 ${
+        isRtl ? "left-0 right-auto" : "right-0"
+      }`}
+    >
+      <div
+        className={`absolute top-[12%] z-0 h-[58%] w-[58%] rounded-full bg-emerald-300/18 blur-3xl ${
+          isRtl ? "left-[12%]" : "right-[12%]"
+        }`}
+      />
+      <div
+        className={`absolute top-[8%] z-0 h-[68%] w-[68%] rounded-full border border-emerald-300/12 ${
+          isRtl ? "left-[10%]" : "right-[10%]"
+        }`}
+      />
+      <div
+        className={`absolute top-[22%] z-0 h-[48%] w-[48%] rounded-full border border-emerald-300/12 ${
+          isRtl ? "left-[24%]" : "right-[24%]"
+        }`}
+      />
 
       <Image
         src={ctaDeviceMockup}
         alt={alt}
         fill
-        sizes="(max-width: 1279px) 0px, 50vw"
-        className="scale-[1.08] object-contain object-bottom-right drop-shadow-[0_38px_90px_rgba(0,0,0,0.36)] xl:scale-[1.14]"
+        sizes="(min-width: 1280px) 50rem, (min-width: 1024px) 56vw, 0px"
+        style={{
+          objectPosition: isRtl ? "left bottom" : "right bottom",
+        }}
+        className="z-10 scale-[1.08] object-contain drop-shadow-[0_38px_90px_rgba(0,0,0,0.36)] xl:scale-[1.14]"
       />
     </div>
   );
@@ -50,7 +69,7 @@ function DeviceMockup({ alt }: { alt: string }) {
 
 function MobileDeviceMockup({ alt }: { alt: string }) {
   return (
-    <div className="relative mt-8 overflow-hidden p-3 sm:mt-10 sm:p-4 lg:hidden">
+    <div className="relative mt-8 overflow-hidden px-0 pb-1 sm:mt-10 sm:px-4 lg:hidden">
       <div className="pointer-events-none absolute inset-x-8 top-1/2 h-2/3 -translate-y-1/2 rounded-full bg-emerald-300/18 blur-3xl" />
 
       <div className="relative mx-auto aspect-16/10 w-full max-w-2xl">
@@ -67,12 +86,12 @@ function MobileDeviceMockup({ alt }: { alt: string }) {
 }
 
 export function CtaSection() {
-  const { t } = useTranslation();
+  const { t, isRtl } = useTranslation();
 
   return (
-    <section className="select-none bg-white">
+    <section className="select-none overflow-hidden bg-white">
       <div className="mx-auto w-full max-w-304 px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16 xl:px-0">
-        <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-brand-deep via-brand-forest to-brand-vivid text-white shadow-[0_28px_80px_rgba(0,63,54,0.28)] sm:rounded-[2.25rem] lg:min-h-128 lg:shadow-[0_38px_105px_rgba(0,63,54,0.32)]">
+        <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-deep via-brand-forest to-brand-vivid text-white shadow-[0_28px_80px_rgba(0,63,54,0.28)] sm:rounded-[2.25rem] lg:min-h-128 lg:shadow-[0_38px_105px_rgba(0,63,54,0.32)]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(255,255,255,0.13)_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-35" />
 
           <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-teal-300/24 blur-3xl sm:h-96 sm:w-96" />
@@ -80,7 +99,11 @@ export function CtaSection() {
           <div className="absolute -bottom-28 left-8 h-72 w-72 rounded-full bg-emerald-300/14 blur-3xl sm:left-36 sm:h-88 sm:w-88" />
 
           <div className="relative px-5 py-8 sm:px-8 sm:py-10 lg:min-h-128 lg:px-16 lg:py-14 xl:px-18">
-            <div className="relative z-20 max-w-136 text-center sm:text-start lg:max-w-130">
+            <div
+              className={`relative z-20 mx-auto max-w-136 text-center sm:mx-0 sm:text-start lg:max-w-130 ${
+                isRtl ? "lg:me-auto lg:pe-8 lg:ps-0" : "lg:pe-8"
+              }`}
+            >
               <div className="inline-flex max-w-full cursor-pointer items-center gap-2 rounded-full border border-emerald-300/45 bg-white/8 px-3.5 py-2 text-badge-sm font-extrabold uppercase tracking-normal text-emerald-300 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/12 sm:px-4 sm:text-xs">
                 <Sparkles
                   size={15}
@@ -109,7 +132,7 @@ export function CtaSection() {
                   <ArrowRight
                     size={20}
                     strokeWidth={2.8}
-                    className="shrink-0"
+                    className={`shrink-0 ${isRtl ? "rotate-180" : ""}`}
                     aria-hidden="true"
                   />
                 </Link>
@@ -139,12 +162,12 @@ export function CtaSection() {
             </div>
 
             <MobileDeviceMockup alt={t.home.cta.imageAlt} />
-            <DeviceMockup alt={t.home.cta.imageAlt} />
+            <DeviceMockup alt={t.home.cta.imageAlt} isRtl={isRtl} />
           </div>
         </div>
 
         <div className="mx-auto mt-8 w-full sm:mt-10">
-          <div className="grid overflow-hidden rounded-4xl border border-zinc-200 bg-white shadow-[0_20px_55px_rgba(15,23,42,0.06)] sm:grid-cols-2 lg:grid-cols-4 lg:rounded-[2.25rem] lg:shadow-[0_24px_70px_rgba(15,23,42,0.06)]">
+          <div className="grid overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-[0_20px_55px_rgba(15,23,42,0.06)] sm:grid-cols-2 lg:grid-cols-4 lg:rounded-[2.25rem] lg:shadow-[0_24px_70px_rgba(15,23,42,0.06)]">
             {featureCards.map((feature, index) => {
               const Icon = feature.icon;
               const content = t.home.cta.featureCards[index];
@@ -186,7 +209,7 @@ export function CtaSection() {
                     <Icon size={25} strokeWidth={2.5} aria-hidden="true" />
                   </span>
 
-                  <div className="min-w-0">
+                  <div className="min-w-0 text-start">
                     <h3 className="text-body font-extrabold leading-snug tracking-normal text-text-strong sm:text-body-lg">
                       {content.title}
                     </h3>
