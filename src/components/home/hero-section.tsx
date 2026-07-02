@@ -15,17 +15,17 @@ function HeroMockup({
   priority?: boolean;
 }) {
   return (
-    <div className="relative mx-auto w-full max-w-90 sm:max-w-140 md:max-w-170 lg:max-w-none">
+    <div className="relative mx-auto w-full max-w-2xs sm:max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl">
       {/* soft accent glows behind the device */}
-      <div className="pointer-events-none absolute inset-x-6 top-1/2 -z-10 h-[65%] -translate-y-1/2 rounded-full bg-teal-200/30 blur-2xl sm:blur-3xl" />
-      <div className="pointer-events-none absolute right-4 top-4 -z-10 h-2/5 w-2/5 rounded-full bg-emerald-100/80 blur-2xl sm:blur-3xl" />
+      <div className="pointer-events-none absolute inset-x-6 top-1/2 -z-10 h-3/5 -translate-y-1/2 rounded-full bg-teal-200/25 blur-2xl sm:blur-3xl" />
+      <div className="pointer-events-none absolute right-4 top-4 -z-10 size-32 rounded-full bg-emerald-100/70 blur-2xl sm:size-40 sm:blur-3xl" />
 
       <Image
         src={heroDeviceMockup}
         alt={alt}
         priority={priority}
-        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 78vw, 48vw"
-        className="h-auto w-full object-contain drop-shadow-[0_20px_45px_rgba(15,23,42,0.16)] sm:drop-shadow-[0_28px_70px_rgba(15,23,42,0.18)]"
+        sizes="(max-width: 640px) 72vw, (max-width: 1024px) 28rem, (max-width: 1280px) 32rem, 36rem"
+        className="h-auto w-full object-contain"
       />
     </div>
   );
@@ -38,8 +38,8 @@ export function HeroSection() {
     <section className="relative isolate select-none overflow-hidden bg-white">
       {/* decorative background */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(0,127,109,0.08)_1.2px,transparent_1.2px)] bg-size-[28px_28px]" />
-      <div className="pointer-events-none absolute -right-28 -top-28 h-64 w-64 rounded-full bg-teal-100 blur-3xl sm:h-80 sm:w-80 lg:h-120 lg:w-120" />
-      <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-emerald-50 blur-3xl sm:h-72 sm:w-72 lg:h-88 lg:w-88" />
+      <div className="pointer-events-none absolute -right-28 -top-28 size-64 rounded-full bg-teal-100 blur-3xl sm:size-80 lg:size-120" />
+      <div className="pointer-events-none absolute -bottom-24 -left-16 size-56 rounded-full bg-emerald-50 blur-3xl sm:size-72 lg:size-88" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:gap-12 md:py-20 lg:min-h-[calc(100svh-104px)] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-12 lg:px-8 lg:py-14 xl:gap-16 xl:px-0">
         {/* text column */}
@@ -75,7 +75,7 @@ export function HeroSection() {
             </Link>
           </div>
 
-          {/* mockup — mobile/tablet only, sits between CTA and stats */}
+          {/* mockup — mobile/tablet only */}
           <div className="mt-9 w-full min-w-0 lg:hidden">
             <HeroMockup alt={t.home.hero.imageAlt} priority />
           </div>
@@ -114,7 +114,7 @@ export function HeroSection() {
         </div>
 
         {/* mockup — desktop only */}
-        <div className="hidden min-w-0 lg:block">
+        <div className="hidden min-w-0 lg:flex lg:justify-end">
           <HeroMockup alt={t.home.hero.imageAlt} priority />
         </div>
       </div>

@@ -33,23 +33,25 @@ const featureCards = [
 function DeviceMockup({ alt, isRtl }: { alt: string; isRtl: boolean }) {
   return (
     <div
-      className={`pointer-events-none absolute bottom-0 z-10 hidden aspect-16/10 w-[min(56%,48rem)] overflow-visible lg:block xl:w-200 ${
-        isRtl ? "left-0 right-auto" : "right-0"
+      className={`pointer-events-none absolute top-1/2 z-10 hidden aspect-16/10 -translate-y-1/2 overflow-visible lg:block lg:w-152 xl:w-2xl 2xl:w-176 ${
+        isRtl ? "left-4 right-auto" : "right-4"
       }`}
     >
       <div
-        className={`absolute top-[12%] z-0 h-[58%] w-[58%] rounded-full bg-emerald-300/18 blur-3xl ${
-          isRtl ? "left-[12%]" : "right-[12%]"
+        className={`absolute top-12 z-0 size-80 rounded-full bg-emerald-300/15 blur-3xl ${
+          isRtl ? "left-12" : "right-12"
         }`}
       />
+
       <div
-        className={`absolute top-[8%] z-0 h-[68%] w-[68%] rounded-full border border-emerald-300/12 ${
-          isRtl ? "left-[10%]" : "right-[10%]"
+        className={`absolute top-8 z-0 size-96 rounded-full border border-emerald-300/10 ${
+          isRtl ? "left-10" : "right-10"
         }`}
       />
+
       <div
-        className={`absolute top-[22%] z-0 h-[48%] w-[48%] rounded-full border border-emerald-300/12 ${
-          isRtl ? "left-[24%]" : "right-[24%]"
+        className={`absolute top-24 z-0 size-64 rounded-full border border-emerald-300/10 ${
+          isRtl ? "left-24" : "right-24"
         }`}
       />
 
@@ -57,11 +59,12 @@ function DeviceMockup({ alt, isRtl }: { alt: string; isRtl: boolean }) {
         src={ctaDeviceMockup}
         alt={alt}
         fill
-        sizes="(min-width: 1280px) 50rem, (min-width: 1024px) 56vw, 0px"
+        sizes="(min-width: 1536px) 44rem, (min-width: 1280px) 42rem, (min-width: 1024px) 38rem, 0px"
         style={{
-          objectPosition: isRtl ? "left bottom" : "right bottom",
+          objectPosition: isRtl ? "left center" : "right center",
         }}
-        className="z-10 scale-[1.08] object-contain drop-shadow-[0_38px_90px_rgba(0,0,0,0.36)] xl:scale-[1.14]"
+        className="z-10 object-contain"
+        priority={false}
       />
     </div>
   );
@@ -69,16 +72,16 @@ function DeviceMockup({ alt, isRtl }: { alt: string; isRtl: boolean }) {
 
 function MobileDeviceMockup({ alt }: { alt: string }) {
   return (
-    <div className="relative mt-8 overflow-hidden px-0 pb-1 sm:mt-10 sm:px-4 lg:hidden">
-      <div className="pointer-events-none absolute inset-x-8 top-1/2 h-2/3 -translate-y-1/2 rounded-full bg-emerald-300/18 blur-3xl" />
+    <div className="relative mt-8 overflow-hidden pb-1 sm:mt-10 lg:hidden">
+      <div className="pointer-events-none absolute inset-x-10 top-1/2 h-64 -translate-y-1/2 rounded-full bg-emerald-300/15 blur-3xl" />
 
-      <div className="relative mx-auto aspect-16/10 w-full max-w-2xl">
+      <div className="relative mx-auto aspect-16/10 w-full max-w-md sm:max-w-xl md:max-w-2xl">
         <Image
           src={ctaDeviceMockup}
           alt={alt}
           fill
-          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 82vw, 0px"
-          className="object-contain drop-shadow-[0_24px_55px_rgba(0,0,0,0.28)]"
+          sizes="(max-width: 640px) 88vw, (max-width: 768px) 36rem, (max-width: 1024px) 42rem, 0px"
+          className="object-contain drop-shadow-[0_24px_55px_rgba(0,0,0,0.26)]"
         />
       </div>
     </div>
@@ -94,13 +97,13 @@ export function CtaSection() {
         <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-brand-deep via-brand-forest to-brand-vivid text-white shadow-[0_28px_80px_rgba(0,63,54,0.28)] sm:rounded-[2.25rem] lg:min-h-128 lg:shadow-[0_38px_105px_rgba(0,63,54,0.32)]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20px_20px,rgba(255,255,255,0.13)_1.2px,transparent_1.2px)] bg-size-[28px_28px] opacity-35" />
 
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-teal-300/24 blur-3xl sm:h-96 sm:w-96" />
+          <div className="absolute -right-24 -top-24 size-72 rounded-full bg-teal-300/24 blur-3xl sm:size-96" />
           <div className="absolute bottom-0 right-0 h-72 w-lg rounded-full bg-emerald-300/12 blur-3xl sm:h-96 sm:w-180" />
-          <div className="absolute -bottom-28 left-8 h-72 w-72 rounded-full bg-emerald-300/14 blur-3xl sm:left-36 sm:h-88 sm:w-88" />
+          <div className="absolute -bottom-28 left-8 size-72 rounded-full bg-emerald-300/14 blur-3xl sm:left-36 sm:size-88" />
 
           <div className="relative px-5 py-8 sm:px-8 sm:py-10 lg:min-h-128 lg:px-16 lg:py-14 xl:px-18">
             <div
-              className={`relative z-20 mx-auto max-w-136 text-center sm:mx-0 sm:text-start lg:max-w-130 ${
+              className={`relative z-20 mx-auto max-w-136 text-center sm:mx-0 sm:text-start lg:max-w-124 ${
                 isRtl ? "lg:me-auto lg:pe-8 lg:ps-0" : "lg:pe-8"
               }`}
             >
@@ -114,9 +117,11 @@ export function CtaSection() {
                 <span className="truncate">{t.home.cta.badge}</span>
               </div>
 
-              <h2 className="mt-5 text-balance text-section-title font-extrabold leading-[1.08] tracking-normal sm:mt-6 sm:text-section-title-lg lg:text-section-title-xl">
+              <h2 className="mt-5 text-balance text-section-title font-extrabold leading-tight tracking-normal sm:mt-6 sm:text-section-title-lg lg:text-section-title-xl">
                 {t.home.cta.title}{" "}
-                <span className="text-emerald-300">{t.home.cta.highlight}</span>
+                <span className="text-emerald-300">
+                  {t.home.cta.highlight}
+                </span>
               </h2>
 
               <p className="mx-auto mt-4 max-w-lg text-body-sm leading-7 text-white/80 sm:mx-0 sm:mt-5 sm:text-base">
@@ -214,7 +219,7 @@ export function CtaSection() {
                       {content.title}
                     </h3>
 
-                    <p className="mt-2 max-w-[18rem] text-sm leading-6 text-zinc-600">
+                    <p className="mt-2 max-w-72 text-sm leading-6 text-zinc-600">
                       {content.description}
                     </p>
                   </div>
