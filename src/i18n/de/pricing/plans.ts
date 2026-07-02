@@ -20,7 +20,7 @@ export const plans: PricingPlan[] = [
           { text: "E-Mail-Support" },
         ],
         cta: "Kostenlos starten",
-        href: "/register",
+        href: "/register?plan=starter",
         note: "Keine Kreditkarte erforderlich",
       },
       {
@@ -44,7 +44,7 @@ export const plans: PricingPlan[] = [
           { text: "Priorisierter E-Mail-Support" },
         ],
         cta: "Kostenlos starten",
-        href: "/register",
+        href: "/register?plan=professional",
         note: "Keine Kreditkarte erforderlich",
       },
       {
@@ -67,7 +67,7 @@ export const plans: PricingPlan[] = [
           { text: "Backups nach Fair-Use" },
         ],
         cta: "Kostenlos starten",
-        href: "/register",
+        href: "/register?plan=business",
         note: "Zusätzliche Benutzer und Speicher verfügbar",
       },
       {

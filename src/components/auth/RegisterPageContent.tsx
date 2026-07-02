@@ -1,10 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useTranslation } from "@/i18n/useTranslation";
+import {
+  normalizeSelectedPlan,
+  type SelectablePlanId,
+} from "@/lib/plans";
+
+const selectedPlanLabels: Record<SelectablePlanId, string> = {
+  starter: "Starter",
+  professional: "Professional",
+  business: "Business",
+};
 
 export function RegisterPageContent() {
+  const searchParams = useSearchParams();
   const { t } = useTranslation();
+  const selectedPlan = normalizeSelectedPlan(searchParams.get("plan"));
 
   return (
     <section className="bg-white py-20">
@@ -20,6 +33,11 @@ export function RegisterPageContent() {
           <p className="mt-3 text-sm leading-6 text-zinc-600">
             {t.auth.register.description}
           </p>
+
+          <div className="mt-5 rounded-md border border-teal-100 bg-teal-50 px-4 py-3 text-sm text-zinc-700">
+            <span className="font-medium text-zinc-950">Selected plan:</span>{" "}
+            {selectedPlanLabels[selectedPlan]}
+          </div>
 
           <form className="mt-8 grid gap-5">
             <label className="grid gap-2 text-sm font-medium text-zinc-800">

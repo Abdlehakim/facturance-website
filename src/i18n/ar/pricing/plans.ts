@@ -20,7 +20,7 @@ export const plans: PricingPlan[] = [
           { text: "دعم عبر البريد الإلكتروني" },
         ],
         cta: "ابدأ مجانًا",
-        href: "/register",
+        href: "/register?plan=starter",
         note: "لا حاجة إلى بطاقة ائتمان",
       },
       {
@@ -44,7 +44,7 @@ export const plans: PricingPlan[] = [
           { text: "دعم بريد إلكتروني بأولوية" },
         ],
         cta: "ابدأ مجانًا",
-        href: "/register",
+        href: "/register?plan=professional",
         note: "لا حاجة إلى بطاقة ائتمان",
       },
       {
@@ -67,7 +67,7 @@ export const plans: PricingPlan[] = [
           { text: "نسخ احتياطي بسياسة استخدام عادل" },
         ],
         cta: "ابدأ مجانًا",
-        href: "/register",
+        href: "/register?plan=business",
         note: "يتوفر مستخدمون ومساحة تخزين إضافية",
       },
       {
