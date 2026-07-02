@@ -1,0 +1,14 @@
+export const register = {
+        badge: "Get started",
+        title: "Create your Facturance account",
+        description: "Set up your company workspace.",
+        companyLabel: "Company name",
+        companyPlaceholder: "Company name",
+        emailLabel: "Work email",
+        emailPlaceholder: "you@company.com",
+        passwordLabel: "Password",
+        passwordPlaceholder: "Create a password",
+        button: "Create account",
+        helperText: "Already registered?",
+        loginLink: "Login",
+      };
