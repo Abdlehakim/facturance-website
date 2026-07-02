@@ -2,6 +2,8 @@ export const register = {
         badge: "ابدأ الآن",
         title: "أنشئ حسابك في Facturance",
         description: "قم بإعداد مساحة عمل شركتك.",
+        fullNameLabel: "الاسم الكامل",
+        fullNamePlaceholder: "اسمك الكامل",
         companyLabel: "اسم الشركة",
         companyPlaceholder: "اسم الشركة",
         emailLabel: "البريد الإلكتروني للعمل",

@@ -40,12 +40,22 @@ export function RegisterPageContent() {
           </div>
 
           <form className="mt-8 grid gap-5">
+            <input type="hidden" name="planId" value={selectedPlan} readOnly />
+            <label className="grid gap-2 text-sm font-medium text-zinc-800">
+              {t.auth.register.fullNameLabel}
+              <input
+                className="rounded-md border border-zinc-300 bg-white px-3 py-3 outline-none transition focus:border-teal-600"
+                type="text"
+                name="fullName"
+                placeholder={t.auth.register.fullNamePlaceholder}
+              />
+            </label>
             <label className="grid gap-2 text-sm font-medium text-zinc-800">
               {t.auth.register.companyLabel}
               <input
                 className="rounded-md border border-zinc-300 bg-white px-3 py-3 outline-none transition focus:border-teal-600"
                 type="text"
-                name="company"
+                name="companyName"
                 placeholder={t.auth.register.companyPlaceholder}
               />
             </label>

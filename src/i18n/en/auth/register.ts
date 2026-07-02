@@ -2,6 +2,8 @@ export const register = {
         badge: "Get started",
         title: "Create your Facturance account",
         description: "Set up your company workspace.",
+        fullNameLabel: "Full name",
+        fullNamePlaceholder: "Your full name",
         companyLabel: "Company name",
         companyPlaceholder: "Company name",
         emailLabel: "Work email",

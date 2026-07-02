@@ -210,6 +210,8 @@ export type TranslationDictionary = {
       badge: string;
       title: string;
       description: string;
+      fullNameLabel: string;
+      fullNamePlaceholder: string;
       companyLabel: string;
       companyPlaceholder: string;
       emailLabel: string;
