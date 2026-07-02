@@ -116,12 +116,12 @@ export default function ContactPage() {
 
         <div className="relative mx-auto grid w-full max-w-304 gap-12 px-6 py-20 lg:grid-cols-[0.92fr_1.08fr] lg:items-center xl:px-0">
           <div>
-            <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover">
+            <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-brand-primary shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover">
               <Sparkles size={15} strokeWidth={2.6} />
               Contact Facturance
             </div>
 
-            <h1 className="mt-6 max-w-150 text-section-title-lg font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-section-title-md">
+            <h1 className="mt-6 max-w-150 text-section-title-lg font-extrabold leading-[1.06] tracking-normal text-zinc-950 sm:text-section-title-md">
               Build your finance platform with a clear path.
             </h1>
 
@@ -135,7 +135,7 @@ export default function ContactPage() {
               <Link
                 href="https://wa.me/21654555688"
                 target="_blank"
-                className="btn btn-primary btn-lg btn-icon min-h-14 px-6 text-sm font-extrabold shadow-xl shadow-teal-900/15 hover:-translate-y-0.5 hover:bg-brand-primary-hover-alt sm:min-h-14 sm:px-6 sm:text-sm"
+                className="btn btn-primary btn-lg"
               >
                 <MessageCircle size={20} strokeWidth={2.6} />
                 WhatsApp us
@@ -143,7 +143,7 @@ export default function ContactPage() {
 
               <Link
                 href="mailto:contact@smartwebify.com"
-                className="btn btn-outline btn-lg btn-icon min-h-14 px-6 text-sm font-extrabold shadow-sm sm:min-h-14 sm:px-6 sm:text-sm"
+                className="btn btn-outline btn-lg"
               >
                 <Mail size={19} strokeWidth={2.6} />
                 Send email
@@ -174,7 +174,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+                  <p className="mt-5 text-xs font-extrabold uppercase tracking-normal text-brand-primary">
                     {method.label}
                   </p>
 
@@ -194,11 +194,11 @@ export default function ContactPage() {
 
       <div className="mx-auto grid w-full max-w-304 gap-10 px-6 py-18 lg:grid-cols-[0.88fr_1.12fr] xl:px-0">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+          <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
             Contact details
           </p>
 
-          <h2 className="mt-3 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-zinc-950">
+          <h2 className="mt-3 text-4xl font-extrabold leading-tight tracking-normal text-zinc-950">
             Choose the fastest way to reach us.
           </h2>
 
@@ -221,7 +221,7 @@ export default function ContactPage() {
                   </span>
 
                   <div>
-                    <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-zinc-500">
+                    <p className="text-xs font-extrabold uppercase tracking-normal text-zinc-500">
                       {item.label}
                     </p>
                     <p className="mt-1 font-bold text-zinc-900">
@@ -236,12 +236,12 @@ export default function ContactPage() {
 
         <form className="rounded-4xl border border-zinc-200 bg-surface-muted p-6 shadow-[0_24px_70px_rgba(15,23,42,0.07)] sm:p-8">
           <div className="mb-7">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-brand-primary shadow-sm">
               <Send size={14} strokeWidth={2.7} />
               Send a message
             </div>
 
-            <h2 className="mt-5 text-3xl font-extrabold tracking-[-0.035em] text-zinc-950">
+            <h2 className="mt-5 text-3xl font-extrabold tracking-normal text-zinc-950">
               Tell us about your project.
             </h2>
 
@@ -325,7 +325,7 @@ export default function ContactPage() {
             </label>
 
             <button
-              className="btn btn-primary btn-lg btn-icon min-h-14 px-7 text-sm font-extrabold shadow-xl shadow-teal-900/15 hover:-translate-y-0.5 hover:bg-brand-primary-hover-alt sm:min-h-14 sm:px-7 sm:text-sm"
+              className="btn btn-primary btn-lg"
               type="button"
             >
               Send message
@@ -344,11 +344,11 @@ export default function ContactPage() {
         <div className="mx-auto w-full max-w-304 px-6 py-18 xl:px-0">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+              <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
                 We can help with
               </p>
 
-              <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.04em] text-zinc-950">
+              <h2 className="mt-3 text-4xl font-extrabold tracking-normal text-zinc-950">
                 Product, support, and platform questions.
               </h2>
             </div>
@@ -407,12 +407,12 @@ export default function ContactPage() {
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-300">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-emerald-300">
                 <Headphones size={15} strokeWidth={2.7} />
                 Need faster help?
               </div>
 
-              <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-[-0.04em]">
+              <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-normal">
                 Talk directly with the Facturance team.
               </h2>
 
@@ -426,7 +426,7 @@ export default function ContactPage() {
               <Link
                 href="https://wa.me/21654555688"
                 target="_blank"
-                className="btn btn-white btn-lg min-h-14 shrink-0 gap-3 px-7 text-sm font-extrabold sm:min-h-14 sm:px-7 sm:text-sm"
+                className="btn btn-white btn-lg shrink-0"
               >
                 WhatsApp
                 <MessageCircle size={19} strokeWidth={2.7} />
@@ -434,7 +434,7 @@ export default function ContactPage() {
 
               <Link
                 href="mailto:contact@smartwebify.com"
-                className="btn btn-lg min-h-14 shrink-0 gap-3 border border-white/20 bg-white/8 px-7 text-sm font-extrabold text-white backdrop-blur hover:-translate-y-0.5 hover:bg-white/12 sm:min-h-14 sm:px-7 sm:text-sm"
+                className="btn btn-outline btn-lg shrink-0"
               >
                 Email
                 <Mail size={19} strokeWidth={2.7} />

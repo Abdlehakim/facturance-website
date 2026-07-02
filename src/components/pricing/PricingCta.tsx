@@ -45,7 +45,7 @@ export function PricingCta() {
 
         <div className="relative z-10 min-h-107.5 px-7 py-12 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
           <div className="relative z-20 max-w-140">
-            <h2 className="max-w-135 text-section-title-md font-extrabold leading-[1.05] tracking-[-0.055em] sm:text-display lg:text-section-title-md">
+            <h2 className="max-w-135 text-section-title-md font-extrabold leading-[1.05] tracking-normal-0.055em] sm:text-display lg:text-section-title-md">
               Ready to simplify your business?
             </h2>
 
@@ -57,7 +57,7 @@ export function PricingCta() {
             <div className="mt-11 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
               <Link
                 href="/register"
-                className="btn btn-white btn-lg min-h-15 min-w-55 gap-4 px-8 text-body-lg font-extrabold shadow-[0_18px_35px_rgba(0,0,0,0.16)] duration-200 hover:shadow-[0_24px_45px_rgba(0,0,0,0.22)] sm:min-h-15 sm:px-8 sm:text-body-lg"
+                className="btn btn-white btn-lg min-w-55"
               >
                 Start free
                 <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
@@ -65,7 +65,7 @@ export function PricingCta() {
 
               <Link
                 href="/contact"
-                className="btn btn-lg min-h-15 min-w-55 gap-4 border border-white/50 bg-white/8 px-8 text-body-lg font-extrabold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md duration-200 hover:-translate-y-0.5 hover:bg-white/13 sm:min-h-15 sm:px-8 sm:text-body-lg"
+                className="btn btn-outline btn-lg min-w-55"
               >
                 Book a demo
                 <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />

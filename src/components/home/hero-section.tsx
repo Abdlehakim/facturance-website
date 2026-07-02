@@ -41,12 +41,12 @@ export function HeroSection() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:gap-12 md:py-20 lg:min-h-[calc(100svh-104px)] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-12 lg:px-8 lg:py-14 xl:gap-16 xl:px-0">
         {/* text column */}
         <div className="relative z-10 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
-          <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-border-brand bg-brand-muted px-3.5 py-2 text-center text-badge-sm font-extrabold uppercase tracking-[0.12em] text-brand-primary shadow-sm sm:px-4 sm:text-badge sm:tracking-[0.18em]">
+          <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-border-brand bg-brand-muted px-3.5 py-2 text-center text-badge-sm font-extrabold uppercase tracking-normal text-brand-primary shadow-sm sm:px-4 sm:text-badge">
             <Cloud size={14} strokeWidth={2.5} className="shrink-0" />
             <span className="truncate">SaaS, desktop, and mobile ready</span>
           </div>
 
-          <h1 className="mt-5 max-w-[17ch] text-balance text-hero font-extrabold leading-[1.04] tracking-[-0.045em] text-zinc-950 sm:max-w-[18ch] sm:text-hero-sm md:max-w-[19ch] lg:max-w-[16ch] lg:text-hero-lg xl:text-hero-xl">
+          <h1 className="mt-5 max-w-[17ch] text-balance text-hero font-extrabold leading-[1.04] tracking-normal text-zinc-950 sm:max-w-[18ch] sm:text-hero-sm md:max-w-[19ch] lg:max-w-[16ch] lg:text-hero-lg xl:text-hero-xl">
             Run your business from one clean finance platform.
           </h1>
 
@@ -60,7 +60,7 @@ export function HeroSection() {
           <div className="mt-7 flex w-full max-w-105 flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
             <Link
               href="/register"
-              className="btn btn-primary btn-lg btn-full btn-icon font-extrabold shadow-[0_16px_40px_rgba(0,127,109,0.27)] hover:-translate-y-0.5 sm:w-auto"
+              className="btn btn-primary btn-lg btn-full sm:w-auto"
             >
               Create account
               <ArrowRight size={20} strokeWidth={2.7} className="shrink-0" />
@@ -68,7 +68,7 @@ export function HeroSection() {
 
             <Link
               href="/pricing"
-              className="btn btn-outline btn-lg btn-full font-extrabold sm:w-auto"
+              className="btn btn-outline btn-lg btn-full sm:w-auto"
             >
               View pricing
             </Link>
@@ -89,7 +89,7 @@ export function HeroSection() {
                 <p className="text-lg font-extrabold tracking-tight text-zinc-950 sm:text-2xl">
                   {stat.value}
                 </p>
-                <p className="mt-1 truncate text-micro font-bold uppercase tracking-[0.08em] text-zinc-500 sm:text-badge sm:tracking-[0.13em]">
+                <p className="mt-1 truncate text-micro font-bold uppercase tracking-normal text-zinc-500 sm:text-badge">
                   {stat.label}
                 </p>
               </div>

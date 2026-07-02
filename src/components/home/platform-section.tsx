@@ -71,7 +71,7 @@ export function PlatformSection() {
       <div className="relative mx-auto flex min-h-[calc(100svh-104px)] w-full max-w-304 flex-col justify-center px-6 py-8 xl:px-0">
         <div className="grid gap-6 lg:grid-cols-[1fr_380px] lg:items-end">
           <div className="max-w-170">
-            <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-brand-primary">
+            <p className="text-xs font-extrabold uppercase tracking-normal0.22em] text-brand-primary">
               Platform foundation
             </p>
 
@@ -93,11 +93,11 @@ export function PlatformSection() {
               </span>
 
               <div>
-                <p className="text-badge font-extrabold uppercase tracking-[0.14em] text-brand-primary">
+                <p className="text-badge font-extrabold uppercase tracking-normal text-brand-primary">
                   Growth-ready
                 </p>
 
-                <h3 className="text-sm font-extrabold leading-snug tracking-[-0.01em] text-zinc-950">
+                <h3 className="text-sm font-extrabold leading-snug tracking-normal-0.01em] text-zinc-950">
                   One platform, many workflows
                 </h3>
               </div>
@@ -145,7 +145,7 @@ export function PlatformSection() {
                   </span>
                 </div>
 
-                <h3 className="mt-4 text-card-title font-extrabold leading-snug tracking-[-0.015em] text-zinc-950">
+                <h3 className="mt-4 text-card-title font-extrabold leading-snug tracking-normal text-zinc-950">
                   {module.title}
                 </h3>
 
@@ -159,11 +159,11 @@ export function PlatformSection() {
 
         <div className="mt-7 grid cursor-pointer gap-4 rounded-3xl border border-zinc-200 bg-surface-dark p-4 text-white shadow-[0_18px_55px_rgba(15,23,42,0.16)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_65px_rgba(15,23,42,0.22)] md:grid-cols-[1fr_auto] md:items-center">
           <div>
-            <p className="text-badge font-extrabold uppercase tracking-[0.16em] text-teal-200">
+            <p className="text-badge font-extrabold uppercase tracking-normal text-teal-200">
               Architecture direction
             </p>
 
-            <h3 className="mt-2 text-panel-title font-extrabold leading-snug tracking-[-0.015em]">
+            <h3 className="mt-2 text-panel-title font-extrabold leading-snug tracking-normal">
               From invoicing software to complete business platform.
             </h3>
           </div>

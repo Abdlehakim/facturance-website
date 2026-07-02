@@ -32,7 +32,7 @@ export function WorkflowSection() {
 
       <div className="relative mx-auto grid min-h-[calc(100svh-104px)] w-full max-w-304 items-center gap-12 px-6 py-14 lg:grid-cols-[0.88fr_1.12fr] xl:px-0">
         <div>
-          <div className="inline-flex rounded-full border border-border-brand bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary shadow-sm">
+          <div className="inline-flex rounded-full border border-border-brand bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-brand-primary shadow-sm">
             Operating model
           </div>
 
@@ -52,7 +52,7 @@ export function WorkflowSection() {
               </span>
 
               <div>
-                <h3 className="text-xl font-extrabold leading-snug tracking-[-0.015em] text-zinc-950">
+                <h3 className="text-xl font-extrabold leading-snug tracking-normal text-zinc-950">
                   Designed to grow step by step
                 </h3>
 
@@ -83,7 +83,7 @@ export function WorkflowSection() {
                   </span>
 
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-xl font-extrabold leading-snug tracking-[-0.015em] text-zinc-950">
+                    <h3 className="text-xl font-extrabold leading-snug tracking-normal text-zinc-950">
                       {item.title}
                     </h3>
 

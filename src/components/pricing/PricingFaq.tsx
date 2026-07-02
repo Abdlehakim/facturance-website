@@ -10,7 +10,7 @@ export function PricingFaq() {
 
   return (
     <section className="mx-auto mt-17.5 w-full max-w-304 px-6 xl:px-0">
-      <h2 className="text-center text-page-title-sm font-extrabold tracking-[-0.03em] text-text-strong">
+      <h2 className="text-center text-page-title-sm font-extrabold tracking-normal-0.03em] text-text-strong">
         Frequently asked questions
       </h2>
 

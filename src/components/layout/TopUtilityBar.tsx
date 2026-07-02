@@ -50,7 +50,7 @@ export function TopUtilityBar() {
   }, []);
 
   return (
-    <div className="min-h-10 border-t border-white/10 bg-brand-dark text-white">
+    <div className="relative z-50 h-10 overflow-visible border-t border-white/10 bg-brand-dark text-white">
       <div className="mx-auto flex min-h-10 w-full max-w-304 flex-col items-center justify-center gap-2 px-4 py-2 sm:h-10 sm:flex-row sm:justify-between sm:gap-4 sm:px-6 sm:py-0 xl:px-0">
         <p className="flex max-w-full items-center justify-center gap-2 text-center text-xs font-bold leading-snug text-white sm:h-10 sm:justify-start sm:gap-3 sm:text-button sm:leading-none">
           <Gift

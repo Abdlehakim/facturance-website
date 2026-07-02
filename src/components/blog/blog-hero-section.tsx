@@ -11,12 +11,12 @@ export function BlogHeroSection() {
 
       <div className="relative mx-auto grid w-full max-w-304 items-center gap-12 px-6 py-20 lg:grid-cols-[0.95fr_1.05fr] xl:px-0">
         <div>
-          <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover">
+          <div className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-brand-primary shadow-sm transition hover:-translate-y-0.5 hover:border-border-brand-hover">
             <BookOpen size={15} strokeWidth={2.6} />
             Facturance blog
           </div>
 
-          <h1 className="mt-6 max-w-150 text-page-title-sm font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-section-title-md">
+          <h1 className="mt-6 max-w-150 text-page-title-sm font-extrabold leading-[1.06] tracking-normal text-zinc-950 sm:text-section-title-md">
             Notes on building modern business software.
           </h1>
 
@@ -40,11 +40,11 @@ export function BlogHeroSection() {
             </span>
           </div>
 
-          <p className="mt-8 text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+          <p className="mt-8 text-sm font-extrabold uppercase tracking-normal text-brand-primary">
             {featuredPost.category}
           </p>
 
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-[-0.035em] text-zinc-950">
+          <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-normal text-zinc-950">
             {featuredPost.title}
           </h2>
 

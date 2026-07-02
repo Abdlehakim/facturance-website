@@ -7,18 +7,18 @@ export function BlogPostsSection() {
     <div className="mx-auto w-full max-w-304 px-6 pb-20 xl:px-0">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+          <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
             Latest articles
           </p>
 
-          <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.04em] text-zinc-950">
+          <h2 className="mt-3 text-4xl font-extrabold tracking-normal text-zinc-950">
             Product, architecture, and operations.
           </h2>
         </div>
 
         <Link
           href="/contact"
-          className="btn btn-outline btn-md btn-icon min-h-12 px-6 font-extrabold"
+          className="btn btn-outline btn-md"
         >
           Suggest a topic
           <ArrowRight size={17} strokeWidth={2.7} />

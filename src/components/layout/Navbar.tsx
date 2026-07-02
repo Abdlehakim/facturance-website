@@ -97,7 +97,7 @@ export function Navbar() {
           <Link
             href="/login"
             onClick={closeMenu}
-            className="btn btn-ghost hidden px-0 text-sm font-semibold focus-visible:ring-brand-primary/25 lg:inline-flex"
+            className="btn btn-outline btn-sm hidden lg:inline-flex"
           >
             Login
           </Link>
@@ -105,7 +105,7 @@ export function Navbar() {
           <Link
             href="/register"
             onClick={closeMenu}
-            className="btn btn-sm hidden bg-linear-to-r from-brand-gradient-from to-brand-gradient-to font-semibold text-white shadow-[0_10px_25px_rgba(0,127,109,0.25)] hover:from-brand-primary hover:to-brand-gradient-to-dark sm:inline-flex lg:min-h-9 lg:px-6"
+            className="btn btn-primary btn-sm hidden sm:inline-flex"
           >
             Start free
           </Link>
@@ -165,7 +165,7 @@ export function Navbar() {
             <Link
               href="/login"
               onClick={closeMenu}
-              className="btn btn-secondary btn-md font-semibold focus-visible:ring-brand-primary/25"
+              className="btn btn-outline btn-md"
             >
               Login
             </Link>
@@ -173,7 +173,7 @@ export function Navbar() {
             <Link
               href="/register"
               onClick={closeMenu}
-              className="btn btn-md bg-linear-to-r from-brand-gradient-from to-brand-gradient-to font-semibold text-white shadow-[0_10px_25px_rgba(0,127,109,0.25)] hover:from-brand-primary hover:to-brand-gradient-to-dark"
+              className="btn btn-primary btn-md"
             >
               Start free
             </Link>

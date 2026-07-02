@@ -39,7 +39,7 @@ export function TrustBar() {
                 <Icon size={21} strokeWidth={2.5} />
               </span>
 
-              <h3 className="mt-5 text-lg font-extrabold tracking-[-0.03em] text-zinc-950">
+              <h3 className="mt-5 text-lg font-extrabold tracking-normal-0.03em] text-zinc-950">
                 {item.title}
               </h3>
 

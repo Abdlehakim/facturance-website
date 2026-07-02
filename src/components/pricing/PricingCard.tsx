@@ -86,14 +86,14 @@ export function PricingCard({
       }`}
     >
       {plan.popular ? (
-        <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-7 py-1 text-badge-sm font-extrabold uppercase tracking-[0.12em] text-white shadow-lg shadow-brand-primary/20">
+        <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-7 py-1 text-badge-sm font-extrabold uppercase tracking-normal text-white shadow-lg shadow-brand-primary/20">
           Most popular
         </span>
       ) : null}
 
       <IconBadge icon={planIcons[plan.icon]} size="sm" className="mx-auto mb-3" />
 
-      <h2 className="text-center text-plan-title font-extrabold tracking-[-0.02em] text-text-strong">
+      <h2 className="text-center text-plan-title font-extrabold tracking-normal-0.02em] text-text-strong">
         {plan.name}
       </h2>
 
@@ -143,10 +143,8 @@ export function PricingCard({
       <div className="mt-auto pt-7">
         <Link
           href={plan.href}
-          className={`btn btn-sm btn-full min-h-10 px-0 text-button font-extrabold ${
-            plan.popular
-              ? "bg-linear-to-r from-brand-gradient-from to-brand-gradient-to text-white shadow-[0_12px_24px_rgba(0,127,109,0.22)] hover:brightness-105"
-              : "border border-brand-primary bg-white text-brand-primary hover:bg-brand-soft"
+          className={`btn btn-sm btn-full ${
+            plan.popular ? "btn-primary" : "btn-outline"
           }`}
         >
           {plan.cta}

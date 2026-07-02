@@ -12,7 +12,11 @@ import {
 
 import ctaDeviceMockup from "../../../public/images/cta-device-mockup.png";
 
-const checks = ["No credit card required", "Setup in minutes", "Built to scale"];
+const checks = [
+  "No credit card required",
+  "Setup in minutes",
+  "Built to scale",
+];
 
 const featureCards = [
   {
@@ -88,7 +92,7 @@ export function CtaSection() {
 
           <div className="relative px-5 py-8 sm:px-8 sm:py-10 lg:min-h-128 lg:px-16 lg:py-14 xl:px-18">
             <div className="relative z-20 max-w-136 text-center sm:text-left lg:max-w-130">
-              <div className="inline-flex max-w-full cursor-pointer items-center gap-2 rounded-full border border-emerald-300/45 bg-white/8 px-3.5 py-2 text-badge-sm font-extrabold uppercase tracking-[0.12em] text-emerald-300 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/12 sm:px-4 sm:text-xs sm:tracking-[0.16em]">
+              <div className="inline-flex max-w-full cursor-pointer items-center gap-2 rounded-full border border-emerald-300/45 bg-white/8 px-3.5 py-2 text-badge-sm font-extrabold uppercase tracking-normal text-emerald-300 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/12 sm:px-4 sm:text-xs">
                 <Sparkles
                   size={15}
                   strokeWidth={2.7}
@@ -98,7 +102,7 @@ export function CtaSection() {
                 <span className="truncate">Ready for launch</span>
               </div>
 
-              <h2 className="mt-5 text-balance text-section-title font-extrabold leading-[1.08] tracking-[-0.035em] sm:mt-6 sm:text-section-title-lg lg:text-section-title-xl">
+              <h2 className="mt-5 text-balance text-section-title font-extrabold leading-[1.08] tracking-normal sm:mt-6 sm:text-section-title-lg lg:text-section-title-xl">
                 Start shaping your finance platform with{" "}
                 <span className="text-emerald-300">Facturance.</span>
               </h2>
@@ -112,16 +116,15 @@ export function CtaSection() {
               <div className="mt-7 sm:mt-8">
                 <Link
                   href="/contact"
-                  className="btn btn-white btn-lg btn-full gap-4 px-5 font-extrabold hover:shadow-2xl sm:w-auto sm:gap-5 sm:px-7"
+                  className="btn btn-white btn-lg btn-full sm:w-auto"
                 >
-                  Talk to us
-                  <span className="btn-icon-circle size-9 bg-brand-primary text-white sm:size-10">
-                    <ArrowRight
-                      size={20}
-                      strokeWidth={2.8}
-                      aria-hidden="true"
-                    />
-                  </span>
+                  <span>Talk to us</span>
+                  <ArrowRight
+                    size={20}
+                    strokeWidth={2.8}
+                    className="shrink-0"
+                    aria-hidden="true"
+                  />
                 </Link>
               </div>
 
@@ -196,7 +199,7 @@ export function CtaSection() {
                   </span>
 
                   <div className="min-w-0">
-                    <h3 className="text-body font-extrabold leading-snug tracking-[-0.015em] text-text-strong sm:text-body-lg">
+                    <h3 className="text-body font-extrabold leading-snug tracking-normal text-text-strong sm:text-body-lg">
                       {feature.title}
                     </h3>
 

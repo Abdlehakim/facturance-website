@@ -6,11 +6,11 @@ export function BlogPrinciplesSection() {
     <div className="bg-surface-brand">
       <div className="mx-auto grid w-full max-w-304 gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center xl:px-0">
         <div>
-          <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+          <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
             Editorial principles
           </p>
 
-          <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-[-0.04em] text-zinc-950">
+          <h2 className="mt-4 text-4xl font-extrabold leading-tight tracking-normal text-zinc-950">
             Practical notes for serious business software.
           </h2>
 

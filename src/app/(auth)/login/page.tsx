@@ -36,7 +36,7 @@ export default function LoginPage() {
               />
             </label>
             <button
-              className="btn btn-primary btn-md rounded-md bg-teal-600 py-3 font-semibold hover:bg-teal-700"
+              className="btn btn-primary btn-md"
               type="button"
             >
               Login

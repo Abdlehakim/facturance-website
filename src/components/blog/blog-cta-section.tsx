@@ -9,12 +9,12 @@ export function BlogCtaSection() {
 
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-emerald-300">
               <Sparkles size={15} strokeWidth={2.7} />
               Stay updated
             </div>
 
-            <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-[-0.04em]">
+            <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-normal">
               Follow the evolution of Facturance.
             </h2>
 
@@ -26,7 +26,7 @@ export function BlogCtaSection() {
 
           <Link
             href="/contact"
-            className="btn btn-white btn-lg min-h-14 shrink-0 gap-3 px-8 text-base font-extrabold sm:min-h-14 sm:px-8 sm:text-base"
+            className="btn btn-white btn-lg shrink-0"
           >
             Contact us
             <ArrowRight size={20} strokeWidth={2.7} />

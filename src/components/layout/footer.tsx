@@ -28,7 +28,7 @@ export function Footer() {
                 F
               </span>
 
-              <span className="truncate text-xl font-extrabold tracking-[-0.03em] text-zinc-950">
+              <span className="truncate text-xl font-extrabold tracking-normal-0.03em] text-zinc-950">
                 Facturance
               </span>
             </Link>
@@ -40,7 +40,7 @@ export function Footer() {
 
             <Link
               href="/register"
-              className="btn btn-primary btn-md btn-full mt-7 gap-2 py-3 shadow-lg shadow-teal-900/15 hover:-translate-y-0.5 sm:w-auto"
+              className="btn btn-primary btn-md btn-full mt-7 sm:w-auto"
             >
               Start free
               <ArrowRight
@@ -53,7 +53,7 @@ export function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-sm font-extrabold uppercase tracking-[0.14em] text-zinc-950">
+            <h3 className="text-sm font-extrabold uppercase tracking-normal text-zinc-950">
               Product
             </h3>
 
@@ -71,7 +71,7 @@ export function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h3 className="text-sm font-extrabold uppercase tracking-[0.14em] text-zinc-950">
+            <h3 className="text-sm font-extrabold uppercase tracking-normal text-zinc-950">
               Company
             </h3>
 
@@ -89,7 +89,7 @@ export function Footer() {
           </div>
 
           <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm sm:col-span-2 sm:p-6 lg:col-span-1">
-            <h3 className="text-sm font-extrabold uppercase tracking-[0.14em] text-zinc-950">
+            <h3 className="text-sm font-extrabold uppercase tracking-normal text-zinc-950">
               Need help?
             </h3>
 
@@ -100,7 +100,7 @@ export function Footer() {
 
             <Link
               href="/contact"
-              className="btn btn-ghost mt-5 gap-2 px-0 text-sm font-extrabold text-brand-primary hover:text-brand-gradient-to-muted"
+              className="btn btn-outline btn-sm mt-5"
             >
               <Mail
                 size={17}

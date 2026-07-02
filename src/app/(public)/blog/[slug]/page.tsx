@@ -58,7 +58,7 @@ function formatPublishedDate(value: string) {
 function ArticleContentBlock({ block }: { block: BlogContentBlock }) {
   if (block.type === "heading") {
     return (
-      <h2 className="pt-4 text-3xl font-extrabold tracking-[-0.035em] text-zinc-950">
+      <h2 className="pt-4 text-3xl font-extrabold tracking-normal text-zinc-950">
         {block.text}
       </h2>
     );
@@ -110,17 +110,17 @@ function MoreArticlesSection({ currentPost }: { currentPost: BlogPost }) {
       <div className="mx-auto w-full max-w-304 px-6 py-20 xl:px-0">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+            <p className="text-sm font-extrabold uppercase tracking-normal text-brand-primary">
               More articles
             </p>
-            <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.04em] text-zinc-950">
+            <h2 className="mt-3 text-4xl font-extrabold tracking-normal text-zinc-950">
               Keep exploring Facturance thinking.
             </h2>
           </div>
 
           <Link
             href="/blog"
-            className="btn btn-outline btn-md btn-icon min-h-12 px-6 font-extrabold"
+            className="btn btn-outline btn-md"
           >
             Back to blog
             <ArrowRight size={17} strokeWidth={2.7} />
@@ -180,12 +180,12 @@ function ArticleCtaSection() {
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-300">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-emerald-300">
                 <Sparkles size={15} strokeWidth={2.7} />
                 Build with clarity
               </div>
 
-              <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-[-0.04em]">
+              <h2 className="mt-5 max-w-170 text-4xl font-extrabold leading-tight tracking-normal">
                 Want to shape better finance operations?
               </h2>
 
@@ -198,14 +198,14 @@ function ArticleCtaSection() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="btn btn-white btn-lg min-h-14 shrink-0 gap-3 px-8 text-base font-extrabold sm:min-h-14 sm:px-8 sm:text-base"
+                className="btn btn-white btn-lg shrink-0"
               >
                 Contact us
                 <ArrowRight size={20} strokeWidth={2.7} />
               </Link>
               <Link
                 href="/pricing"
-                className="btn btn-lg min-h-14 shrink-0 border border-white/30 px-8 text-base font-extrabold text-white hover:-translate-y-0.5 hover:bg-white/10 sm:min-h-14 sm:px-8 sm:text-base"
+                className="btn btn-outline btn-lg shrink-0"
               >
                 View pricing
               </Link>
@@ -247,12 +247,12 @@ export default async function BlogArticlePage({
 
           <div className="mt-10 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <div className="inline-flex items-center gap-3 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary shadow-sm">
+              <div className="inline-flex items-center gap-3 rounded-full border border-border-brand bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-normal text-brand-primary shadow-sm">
                 <Icon size={16} strokeWidth={2.6} />
                 {post.category}
               </div>
 
-              <h1 className="mt-6 max-w-190 text-page-title-sm font-extrabold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-section-title-md">
+              <h1 className="mt-6 max-w-190 text-page-title-sm font-extrabold leading-[1.06] tracking-normal text-zinc-950 sm:text-section-title-md">
                 {post.title}
               </h1>
             </div>
