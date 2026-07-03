@@ -192,6 +192,7 @@ export function RegisterPageContent() {
             <div className="grid gap-4 sm:grid-cols-[minmax(150px,180px)_minmax(0,1fr)]">
               <PhoneCountrySelect
                 label={t.auth.register.phoneCountryLabel}
+                placeholder={t.auth.register.phoneCountryPlaceholder}
                 selectedCountry={formValues.phoneCountry}
                 selectedCode={formValues.phoneCountryCode}
                 options={phoneCountryOptions}

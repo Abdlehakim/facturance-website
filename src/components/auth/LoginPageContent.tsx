@@ -162,7 +162,8 @@ export function LoginPageContent() {
           <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-[minmax(150px,180px)_minmax(0,1fr)]">
               <PhoneCountrySelect
-                label={t.auth.register.phoneCountryLabel}
+                label={t.auth.login.phoneCountryLabel}
+                placeholder={t.auth.login.phoneCountryPlaceholder}
                 selectedCountry={formValues.phoneCountry}
                 selectedCode={formValues.phoneCountryCode}
                 options={phoneCountryOptions}
@@ -170,11 +171,11 @@ export function LoginPageContent() {
               />
 
               <AuthTextField
-                label={t.auth.register.phoneNumberLabel}
+                label={t.auth.login.phoneNumberLabel}
                 icon={Phone}
                 type="tel"
                 name="phoneNumber"
-                placeholder={t.auth.register.phoneNumberPlaceholder}
+                placeholder={t.auth.login.phoneNumberPlaceholder}
                 value={formValues.phoneNumber}
                 onChange={handleFieldChange("phoneNumber")}
                 inputMode="tel"

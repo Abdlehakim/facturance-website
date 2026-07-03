@@ -198,8 +198,10 @@ export type TranslationDictionary = {
       badge: string;
       title: string;
       description: string;
-      emailLabel: string;
-      emailPlaceholder: string;
+      phoneCountryLabel: string;
+      phoneCountryPlaceholder: string;
+      phoneNumberLabel: string;
+      phoneNumberPlaceholder: string;
       passwordLabel: string;
       passwordPlaceholder: string;
       button: string;

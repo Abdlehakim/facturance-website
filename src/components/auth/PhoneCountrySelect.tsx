@@ -6,6 +6,7 @@ import type { PhoneCountryOption } from "./registerData";
 
 type PhoneCountrySelectProps = {
   label: string;
+  placeholder?: string;
   selectedCountry: string;
   selectedCode: string;
   options: readonly PhoneCountryOption[];
@@ -14,6 +15,7 @@ type PhoneCountrySelectProps = {
 
 export function PhoneCountrySelect({
   label,
+  placeholder,
   selectedCountry,
   selectedCode,
   options,
@@ -27,7 +29,7 @@ export function PhoneCountrySelect({
 
   const selectedLabel = selectedOption
     ? `${selectedOption.shortCode} (${selectedOption.code})`
-    : selectedCode;
+    : placeholder ?? selectedCode;
 
   return (
     <label className="grid min-w-0 gap-2 text-sm font-semibold text-zinc-900">
