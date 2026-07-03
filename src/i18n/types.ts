@@ -203,6 +203,11 @@ export type TranslationDictionary = {
       passwordLabel: string;
       passwordPlaceholder: string;
       button: string;
+      signingIn: string;
+      success: string;
+      error: string;
+      signedInAs: string;
+      tokenType: string;
       helperText: string;
       registerLink: string;
     };

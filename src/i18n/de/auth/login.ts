@@ -7,6 +7,11 @@ export const login = {
         passwordLabel: "Passwort",
         passwordPlaceholder: "Ihr Passwort",
         button: "Anmelden",
+        signingIn: "Anmeldung...",
+        success: "Anmeldung erfolgreich.",
+        error: "Anmeldung nicht mÃ¶glich. PrÃ¼fen Sie Ihre E-Mail, Ihr Passwort oder ob die Auth API lÃ¤uft.",
+        signedInAs: "Angemeldet als",
+        tokenType: "Token-Typ",
         helperText: "Neu bei Facturance?",
         registerLink: "Konto erstellen",
       };

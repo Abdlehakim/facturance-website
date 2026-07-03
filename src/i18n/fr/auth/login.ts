@@ -7,6 +7,11 @@ export const login = {
         passwordLabel: "Mot de passe",
         passwordPlaceholder: "Votre mot de passe",
         button: "Connexion",
+        signingIn: "Connexion...",
+        success: "Connexion rÃ©ussie.",
+        error: "Impossible de se connecter. VÃ©rifiez votre email, votre mot de passe ou confirmez que lâ€™API Auth est lancÃ©e.",
+        signedInAs: "ConnectÃ© en tant que",
+        tokenType: "Type de jeton",
         helperText: "Nouveau sur Facturance ?",
         registerLink: "Créer un compte",
       };

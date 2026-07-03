@@ -7,6 +7,11 @@ export const login = {
         passwordLabel: "Password",
         passwordPlaceholder: "Your password",
         button: "Login",
+        signingIn: "Signing in...",
+        success: "Login successful.",
+        error: "Unable to login. Check your email, password, or confirm the Auth API is running.",
+        signedInAs: "Signed in as",
+        tokenType: "Token type",
         helperText: "New to Facturance?",
         registerLink: "Create an account",
       };
