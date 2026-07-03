@@ -8,7 +8,7 @@ import {
   CalendarDays,
   CheckCircle2,
   Clock3,
-  Globe2,
+  Globe,
   Headphones,
   LifeBuoy,
   Mail,
@@ -45,7 +45,7 @@ export function ContactPageContent() {
       ...t.contact.methods[2],
     },
     {
-      icon: Globe2,
+      icon: Globe,
       value: "facturance.com",
       href: "https://facturance.com",
       ...t.contact.methods[3],

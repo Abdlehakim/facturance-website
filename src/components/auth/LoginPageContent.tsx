@@ -2,11 +2,20 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
+import { Lock, Phone } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
 import { API_BASE_URL } from "@/lib/api";
+import { AuthTextField } from "./AuthTextField";
+import { PhoneCountrySelect } from "./PhoneCountrySelect";
+import {
+  phoneCountryOptions,
+  type PhoneCountryOption,
+} from "./registerData";
 
 type LoginFormState = {
-  email: string;
+  phoneCountry: string;
+  phoneCountryCode: string;
+  phoneNumber: string;
   password: string;
 };
 
@@ -27,7 +36,9 @@ type ApiErrorResponse = {
 };
 
 const initialFormState: LoginFormState = {
-  email: "",
+  phoneCountry: "United States",
+  phoneCountryCode: "+1",
+  phoneNumber: "",
   password: "",
 };
 
@@ -68,15 +79,32 @@ export function LoginPageContent() {
     };
   }
 
+  function handlePhoneCountrySelect(option: PhoneCountryOption) {
+    setFormValues((currentValues) => ({
+      ...currentValues,
+      phoneCountry: option.country,
+      phoneCountryCode: option.code,
+    }));
+    setErrorMessage(null);
+    setLoginResponse(null);
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const requestBody = {
-      email: formValues.email.trim(),
+      phoneCountry: formValues.phoneCountry,
+      phoneCountryCode: formValues.phoneCountryCode,
+      phoneNumber: formValues.phoneNumber.trim(),
       password: formValues.password,
     };
 
-    if (!requestBody.email || !requestBody.password) {
+    if (
+      !requestBody.phoneCountry ||
+      !requestBody.phoneCountryCode ||
+      !requestBody.phoneNumber ||
+      !requestBody.password
+    ) {
       setErrorMessage(t.auth.login.error);
       setLoginResponse(null);
       return;
@@ -116,13 +144,14 @@ export function LoginPageContent() {
   }
 
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto w-full max-w-md px-4 sm:px-6">
-        <div className="rounded-lg border border-zinc-200 bg-surface-page p-6">
-          <p className="text-sm font-semibold uppercase text-teal-700">
+    <section className="flex min-h-[calc(100vh-72px)] items-center bg-white px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto w-full max-w-xl">
+        <div className="rounded-2xl border border-zinc-200/80 bg-surface-page p-5 shadow-xl shadow-zinc-950/5 sm:p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-teal-700">
             {t.auth.login.badge}
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-normal text-zinc-950">
+
+          <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-zinc-950">
             {t.auth.login.title}
           </h1>
 
@@ -130,33 +159,42 @@ export function LoginPageContent() {
             {t.auth.login.description}
           </p>
 
-          <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
-            <label className="grid gap-2 text-sm font-medium text-zinc-800">
-              {t.auth.login.emailLabel}
-              <input
-                className="rounded-md border border-zinc-300 bg-white px-3 py-3 outline-none transition focus:border-teal-600"
-                type="email"
-                name="email"
-                placeholder={t.auth.login.emailPlaceholder}
-                value={formValues.email}
-                onChange={handleFieldChange("email")}
+          <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
+            <div className="grid gap-4 sm:grid-cols-[minmax(150px,180px)_minmax(0,1fr)]">
+              <PhoneCountrySelect
+                label={t.auth.register.phoneCountryLabel}
+                selectedCountry={formValues.phoneCountry}
+                selectedCode={formValues.phoneCountryCode}
+                options={phoneCountryOptions}
+                onSelect={handlePhoneCountrySelect}
               />
-            </label>
-            <label className="grid gap-2 text-sm font-medium text-zinc-800">
-              {t.auth.login.passwordLabel}
-              <input
-                className="rounded-md border border-zinc-300 bg-white px-3 py-3 outline-none transition focus:border-teal-600"
-                type="password"
-                name="password"
-                placeholder={t.auth.login.passwordPlaceholder}
-                value={formValues.password}
-                onChange={handleFieldChange("password")}
+
+              <AuthTextField
+                label={t.auth.register.phoneNumberLabel}
+                icon={Phone}
+                type="tel"
+                name="phoneNumber"
+                placeholder={t.auth.register.phoneNumberPlaceholder}
+                value={formValues.phoneNumber}
+                onChange={handleFieldChange("phoneNumber")}
+                inputMode="tel"
+                autoComplete="tel"
               />
-            </label>
+            </div>
+
+            <AuthTextField
+              label={t.auth.login.passwordLabel}
+              icon={Lock}
+              type="password"
+              name="password"
+              placeholder={t.auth.login.passwordPlaceholder}
+              value={formValues.password}
+              onChange={handleFieldChange("password")}
+            />
 
             {errorMessage ? (
               <p
-                className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                 role="alert"
               >
                 {errorMessage}
@@ -165,7 +203,7 @@ export function LoginPageContent() {
 
             {loginResponse ? (
               <div
-                className="rounded-md border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-zinc-700"
+                className="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-zinc-700"
                 role="status"
                 aria-live="polite"
               >
@@ -188,7 +226,7 @@ export function LoginPageContent() {
             ) : null}
 
             <button
-              className="btn btn-primary btn-md disabled:cursor-not-allowed disabled:opacity-70"
+              className="btn btn-primary btn-md h-11 w-full rounded-xl font-semibold shadow-lg shadow-teal-900/10 disabled:cursor-not-allowed disabled:opacity-70"
               type="submit"
               disabled={isSubmitting}
             >
@@ -196,7 +234,7 @@ export function LoginPageContent() {
             </button>
           </form>
 
-          <p className="mt-6 text-sm text-zinc-600">
+          <p className="mt-5 text-center text-sm text-zinc-600">
             {t.auth.login.helperText}{" "}
             <Link href="/register" className="font-semibold text-teal-700">
               {t.auth.login.registerLink}

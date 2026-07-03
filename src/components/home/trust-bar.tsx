@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, Globe2, MonitorDown, ShieldCheck } from "lucide-react";
+import { Building2, Globe, MonitorDown, ShieldCheck } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
 
 const highlights = [
@@ -14,7 +14,7 @@ const highlights = [
     icon: MonitorDown,
   },
   {
-    icon: Globe2,
+    icon: Globe,
   },
 ];
 
