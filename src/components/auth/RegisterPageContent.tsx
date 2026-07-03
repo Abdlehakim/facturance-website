@@ -251,12 +251,12 @@ export function RegisterPageContent() {
                   </span>{" "}
                   {selectedPlanLabels[registerResponse.tenant.planId]}
                 </p>
-                <p className="mt-1">
-                  <span className="font-medium text-zinc-950">
-                    {t.auth.register.nextDestination}:
-                  </span>{" "}
-                  {registerResponse.redirectTo}
-                </p>
+                <Link
+                  href={registerResponse.redirectTo}
+                  className="btn btn-primary btn-md mt-4"
+                >
+                  Continue to onboarding
+                </Link>
               </div>
             ) : null}
 
