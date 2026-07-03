@@ -13,4 +13,9 @@ export const register = {
         button: "Créer un compte",
         helperText: "Déjà inscrit ?",
         loginLink: "Connexion",
+        selectedPlan: "Offre selectionnee",
+        creatingAccount: "Creation du compte...",
+        success: "Compte cree avec succes.",
+        error: "Impossible de creer le compte. Completez les champs requis ou verifiez que l'API Auth fonctionne.",
+        nextDestination: "Prochaine destination",
       };

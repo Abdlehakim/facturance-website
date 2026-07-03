@@ -219,6 +219,11 @@ export type TranslationDictionary = {
       passwordLabel: string;
       passwordPlaceholder: string;
       button: string;
+      selectedPlan: string;
+      creatingAccount: string;
+      success: string;
+      error: string;
+      nextDestination: string;
       helperText: string;
       loginLink: string;
     };

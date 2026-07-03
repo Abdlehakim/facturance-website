@@ -13,4 +13,9 @@ export const register = {
         button: "Konto erstellen",
         helperText: "Bereits registriert?",
         loginLink: "Anmelden",
+        selectedPlan: "Ausgewaehlter Plan",
+        creatingAccount: "Konto wird erstellt...",
+        success: "Konto erfolgreich erstellt.",
+        error: "Konto konnte nicht erstellt werden. Fuellen Sie die Pflichtfelder aus oder pruefen Sie, ob die Auth API laeuft.",
+        nextDestination: "Naechstes Ziel",
       };

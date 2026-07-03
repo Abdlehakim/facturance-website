@@ -13,4 +13,9 @@ export const register = {
         button: "Create account",
         helperText: "Already registered?",
         loginLink: "Login",
+        selectedPlan: "Selected plan",
+        creatingAccount: "Creating account...",
+        success: "Account created successfully.",
+        error: "Unable to create account. Complete the required fields or confirm the Auth API is running.",
+        nextDestination: "Next",
       };
