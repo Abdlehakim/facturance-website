@@ -42,6 +42,9 @@ const initialFormState: LoginFormState = {
   password: "",
 };
 
+const DASHBOARD_BASE_URL =
+  process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL ?? "http://localhost:5173";
+
 function getApiErrorMessage(responseBody: unknown) {
   if (!responseBody || typeof responseBody !== "object") {
     return null;
@@ -66,7 +69,6 @@ export function LoginPageContent() {
     useState<LoginFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [loginResponse, setLoginResponse] = useState<LoginResponse | null>(null);
 
   function handleFieldChange(field: keyof LoginFormState) {
     return (event: ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +77,6 @@ export function LoginPageContent() {
         [field]: event.target.value,
       }));
       setErrorMessage(null);
-      setLoginResponse(null);
     };
   }
 
@@ -86,7 +87,6 @@ export function LoginPageContent() {
       phoneCountryCode: option.code,
     }));
     setErrorMessage(null);
-    setLoginResponse(null);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -106,13 +106,11 @@ export function LoginPageContent() {
       !requestBody.password
     ) {
       setErrorMessage(t.auth.login.error);
-      setLoginResponse(null);
       return;
     }
 
     setIsSubmitting(true);
     setErrorMessage(null);
-    setLoginResponse(null);
 
     try {
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
@@ -135,7 +133,11 @@ export function LoginPageContent() {
         return;
       }
 
-      setLoginResponse(responseBody as LoginResponse);
+      const loginResponse = responseBody as LoginResponse;
+
+      window.location.href = `${DASHBOARD_BASE_URL}/dashboard#access_token=${encodeURIComponent(
+        loginResponse.session.accessToken,
+      )}`;
     } catch {
       setErrorMessage(t.auth.login.error);
     } finally {
@@ -200,30 +202,6 @@ export function LoginPageContent() {
               >
                 {errorMessage}
               </p>
-            ) : null}
-
-            {loginResponse ? (
-              <div
-                className="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-zinc-700"
-                role="status"
-                aria-live="polite"
-              >
-                <p className="font-semibold text-teal-800">
-                  {t.auth.login.success}
-                </p>
-                <p className="mt-2">
-                  <span className="font-medium text-zinc-950">
-                    {t.auth.login.signedInAs}:
-                  </span>{" "}
-                  {loginResponse.user.fullName}
-                </p>
-                <p className="mt-1">
-                  <span className="font-medium text-zinc-950">
-                    {t.auth.login.tokenType}:
-                  </span>{" "}
-                  {loginResponse.session.tokenType}
-                </p>
-              </div>
             ) : null}
 
             <button
