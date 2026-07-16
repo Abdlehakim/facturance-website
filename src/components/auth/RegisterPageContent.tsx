@@ -255,27 +255,29 @@ export function RegisterPageContent({
               />
             </div>
 
-            <AuthPasswordField
-              label={t.auth.register.passwordLabel}
-              name="password"
-              placeholder={t.auth.register.passwordPlaceholder}
-              value={formValues.password}
-              onChange={handleFieldChange("password")}
-              autoComplete="new-password"
-              showPasswordLabel={t.auth.register.showPassword}
-              hidePasswordLabel={t.auth.register.hidePassword}
-            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <AuthPasswordField
+                label={t.auth.register.passwordLabel}
+                name="password"
+                placeholder={t.auth.register.passwordPlaceholder}
+                value={formValues.password}
+                onChange={handleFieldChange("password")}
+                autoComplete="new-password"
+                showPasswordLabel={t.auth.register.showPassword}
+                hidePasswordLabel={t.auth.register.hidePassword}
+              />
 
-            <AuthPasswordField
-              label={t.auth.register.confirmPasswordLabel}
-              name="confirmPassword"
-              placeholder={t.auth.register.confirmPasswordPlaceholder}
-              value={formValues.confirmPassword}
-              onChange={handleFieldChange("confirmPassword")}
-              autoComplete="new-password"
-              showPasswordLabel={t.auth.register.showPassword}
-              hidePasswordLabel={t.auth.register.hidePassword}
-            />
+              <AuthPasswordField
+                label={t.auth.register.confirmPasswordLabel}
+                name="confirmPassword"
+                placeholder={t.auth.register.confirmPasswordPlaceholder}
+                value={formValues.confirmPassword}
+                onChange={handleFieldChange("confirmPassword")}
+                autoComplete="new-password"
+                showPasswordLabel={t.auth.register.showPassword}
+                hidePasswordLabel={t.auth.register.hidePassword}
+              />
+            </div>
 
             {errorMessage ? (
               <p

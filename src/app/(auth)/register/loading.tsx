@@ -49,14 +49,16 @@ export default function RegisterLoading() {
                 </div>
               </div>
 
-              <div className="grid gap-2">
-                <div className="h-4 w-24 rounded-sm bg-zinc-200" />
-                <div className="h-11 w-full rounded-sm border border-zinc-200 bg-white" />
-              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="grid gap-2">
+                  <div className="h-4 w-24 rounded-sm bg-zinc-200" />
+                  <div className="h-11 w-full rounded-sm border border-zinc-200 bg-white" />
+                </div>
 
-              <div className="grid gap-2">
-                <div className="h-4 w-32 rounded-sm bg-zinc-200" />
-                <div className="h-11 w-full rounded-sm border border-zinc-200 bg-white" />
+                <div className="grid gap-2">
+                  <div className="h-4 w-32 rounded-sm bg-zinc-200" />
+                  <div className="h-11 w-full rounded-sm border border-zinc-200 bg-white" />
+                </div>
               </div>
 
               <div className="h-11 w-full rounded-sm bg-zinc-200" />
