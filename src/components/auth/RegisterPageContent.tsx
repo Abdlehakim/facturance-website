@@ -147,7 +147,7 @@ export function RegisterPageContent() {
             {t.auth.register.description}
           </p>
 
-          <div className="mt-5 rounded-xl border border-teal-200/70 bg-teal-50/80 px-4 py-3 text-sm text-zinc-700 shadow-sm shadow-teal-950/5">
+          <div className="mt-5 rounded-sm border border-teal-200/70 bg-teal-50/80 px-4 py-3 text-sm text-zinc-700 shadow-sm shadow-teal-950/5">
             <span className="font-semibold text-zinc-950">
               {t.auth.register.selectedPlan}:
             </span>{" "}
@@ -224,7 +224,7 @@ export function RegisterPageContent() {
 
             {errorMessage ? (
               <p
-                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                className="rounded-sm border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                 role="alert"
               >
                 {errorMessage}
@@ -232,7 +232,7 @@ export function RegisterPageContent() {
             ) : null}
 
             <button
-              className="btn btn-primary btn-md h-11 w-full rounded-xl font-semibold shadow-lg shadow-teal-900/10 disabled:cursor-not-allowed disabled:opacity-70"
+              className="btn btn-primary btn-md h-11 w-full rounded-sm font-semibold shadow-lg shadow-teal-900/10 disabled:cursor-not-allowed disabled:opacity-70"
               type="submit"
               disabled={isSubmitting}
             >

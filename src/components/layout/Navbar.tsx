@@ -72,7 +72,7 @@ function MobileNavigationModal({
               className="flex min-w-0 items-center gap-3"
               aria-label={labels.homeAria}
             >
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-xl font-bold text-white shadow-sm">
+              <span className="grid size-10 shrink-0 place-items-center rounded-sm bg-linear-to-br from-brand-gradient-from-bright to-brand-gradient-to text-xl font-bold text-white shadow-sm">
                 F
               </span>
 

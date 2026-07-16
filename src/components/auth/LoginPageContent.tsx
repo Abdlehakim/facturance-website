@@ -280,7 +280,7 @@ export function LoginPageContent() {
 
             {errorMessage ? (
               <p
-                className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                className="rounded-sm border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                 role="alert"
               >
                 {errorMessage}
@@ -288,7 +288,7 @@ export function LoginPageContent() {
             ) : null}
 
             <button
-              className="btn btn-primary btn-md h-11 w-full rounded-xl font-semibold shadow-lg shadow-teal-900/10 disabled:cursor-not-allowed disabled:opacity-70"
+              className="btn btn-primary btn-md h-11 w-full rounded-sm font-semibold shadow-lg shadow-teal-900/10 disabled:cursor-not-allowed disabled:opacity-70"
               type="submit"
               disabled={isSubmitting}
             >

@@ -54,7 +54,7 @@ export function PhoneCountrySelect({
 
         <button
           type="button"
-          className="flex h-11 w-full min-w-0 items-center rounded-xl border border-zinc-200 bg-white px-3 py-2.5 pl-10 pr-10 text-left text-sm font-semibold text-zinc-950 shadow-sm outline-none transition hover:border-zinc-300 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10"
+          className="flex h-11 w-full min-w-0 items-center rounded-sm border border-zinc-200 bg-white px-3 py-2.5 pl-10 pr-10 text-left text-sm font-semibold text-zinc-950 shadow-sm outline-none transition hover:border-zinc-300 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10"
           aria-haspopup="listbox"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((currentValue) => !currentValue)}
@@ -71,7 +71,7 @@ export function PhoneCountrySelect({
         </button>
 
         {isOpen ? (
-          <div className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-2xl shadow-zinc-950/15 ring-1 ring-zinc-950/5">
+          <div className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-sm border border-zinc-200 bg-white shadow-2xl shadow-zinc-950/15 ring-1 ring-zinc-950/5">
             <div
               className="max-h-64 overflow-y-auto p-1"
               role="listbox"

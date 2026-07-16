@@ -22,7 +22,7 @@ export function PricingFaq() {
             {column.map((faq) => (
               <details
                 key={faq.question}
-                className="group overflow-hidden rounded-xl border border-border-muted bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
+                className="group overflow-hidden rounded-sm border border-border-muted bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)]"
               >
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 px-7 text-start text-body-sm font-bold text-text-strong transition hover:bg-surface-hover-bright">
                   {faq.question}

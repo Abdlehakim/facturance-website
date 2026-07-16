@@ -295,7 +295,7 @@ export function TopUtilityBar() {
                       key={option.code}
                       type="button"
                       role="menuitem"
-                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-start text-sm font-semibold transition ${
+                      className={`flex w-full items-center justify-between gap-3 rounded-sm px-3 py-2.5 text-start text-sm font-semibold transition ${
                         isSelected
                           ? "bg-brand-soft text-brand-primary"
                           : "text-text-strong hover:bg-surface-hover"
@@ -362,7 +362,7 @@ export function TopUtilityBar() {
                       key={option.code}
                       type="button"
                       role="menuitem"
-                      className={`flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-start text-sm font-semibold transition ${
+                      className={`flex w-full items-center justify-between gap-3 rounded-sm px-3 py-2.5 text-start text-sm font-semibold transition ${
                         isSelected
                           ? "bg-brand-soft text-brand-primary"
                           : "text-text-strong hover:bg-surface-hover"

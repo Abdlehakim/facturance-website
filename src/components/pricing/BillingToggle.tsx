@@ -20,7 +20,7 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
           <button
             type="button"
             onClick={() => onChange("monthly")}
-            className={`flex h-10 items-center justify-center rounded-xl px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
+            className={`flex h-10 items-center justify-center rounded-sm px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
               !isYearly
                 ? "bg-brand-soft text-text-strong"
                 : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
@@ -46,7 +46,7 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
           <button
             type="button"
             onClick={() => onChange("yearly")}
-            className={`flex h-10 items-center justify-center rounded-xl px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
+            className={`flex h-10 items-center justify-center rounded-sm px-2 text-xs font-extrabold leading-4 transition sm:text-sm ${
               isYearly
                 ? "bg-brand-soft text-text-strong"
                 : "text-text-soft hover:bg-surface-hover hover:text-text-strong"
@@ -57,7 +57,7 @@ export function BillingToggle({ value, onChange }: BillingToggleProps) {
         </div>
 
         <div className="mt-2 flex justify-center">
-          <span className="inline-flex items-center gap-1.5 rounded-xl bg-accent-lime px-3.5 py-1.5 text-[11px] font-extrabold leading-none text-brand-primary sm:text-caption">
+          <span className="inline-flex items-center gap-1.5 rounded-sm bg-accent-lime px-3.5 py-1.5 text-[11px] font-extrabold leading-none text-brand-primary sm:text-caption">
             <Gift size={13} strokeWidth={2.4} aria-hidden="true" />
             {t.pricing.saveUpTo}
           </span>
