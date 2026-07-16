@@ -8,6 +8,7 @@ export const login = {
         phoneNumberPlaceholder: "Ihre Telefonnummer",
         passwordLabel: "Passwort",
         passwordPlaceholder: "Ihr Passwort",
+        rememberPhoneLabel: "L\u00e4ndervorwahl und Telefonnummer merken",
         button: "Anmelden",
         signingIn: "Anmeldung...",
         success: "Anmeldung erfolgreich.",

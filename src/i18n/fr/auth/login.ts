@@ -8,6 +8,7 @@ export const login = {
         phoneNumberPlaceholder: "Votre num\u00e9ro de t\u00e9l\u00e9phone",
         passwordLabel: "Mot de passe",
         passwordPlaceholder: "Votre mot de passe",
+        rememberPhoneLabel: "M\u00e9moriser l\u2019indicatif pays et le num\u00e9ro de t\u00e9l\u00e9phone",
         button: "Connexion",
         signingIn: "Connexion...",
         success: "Connexion r\u00e9ussie.",

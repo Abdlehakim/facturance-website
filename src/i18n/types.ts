@@ -204,6 +204,7 @@ export type TranslationDictionary = {
       phoneNumberPlaceholder: string;
       passwordLabel: string;
       passwordPlaceholder: string;
+      rememberPhoneLabel: string;
       button: string;
       signingIn: string;
       success: string;

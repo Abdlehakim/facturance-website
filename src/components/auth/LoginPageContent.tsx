@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
 import { Lock, Phone } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
@@ -17,6 +17,12 @@ type LoginFormState = {
   phoneCountryCode: string;
   phoneNumber: string;
   password: string;
+};
+
+type RememberedLoginPhone = {
+  phoneCountry: string;
+  phoneCountryCode: string;
+  phoneNumber: string;
 };
 
 type LoginResponse = {
@@ -45,6 +51,9 @@ const initialFormState: LoginFormState = {
 const DASHBOARD_BASE_URL =
   process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL ?? "http://localhost:5173";
 
+const REMEMBERED_LOGIN_PHONE_STORAGE_KEY =
+  "facturance.rememberedLoginPhone";
+
 function getApiErrorMessage(responseBody: unknown) {
   if (!responseBody || typeof responseBody !== "object") {
     return null;
@@ -63,12 +72,61 @@ function getApiErrorMessage(responseBody: unknown) {
   return null;
 }
 
+function parseRememberedLoginPhone(
+  value: string | null,
+): RememberedLoginPhone | null {
+  if (!value) {
+    return null;
+  }
+
+  try {
+    const parsedValue = JSON.parse(value) as Partial<RememberedLoginPhone>;
+
+    if (
+      typeof parsedValue.phoneCountry === "string" &&
+      typeof parsedValue.phoneCountryCode === "string" &&
+      typeof parsedValue.phoneNumber === "string" &&
+      parsedValue.phoneCountry &&
+      parsedValue.phoneCountryCode
+    ) {
+      return {
+        phoneCountry: parsedValue.phoneCountry,
+        phoneCountryCode: parsedValue.phoneCountryCode,
+        phoneNumber: parsedValue.phoneNumber,
+      };
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export function LoginPageContent() {
   const { t } = useTranslation();
   const [formValues, setFormValues] =
     useState<LoginFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isRememberPhoneEnabled, setIsRememberPhoneEnabled] = useState(false);
+
+  useEffect(() => {
+    const rememberedPhone = parseRememberedLoginPhone(
+      window.localStorage.getItem(REMEMBERED_LOGIN_PHONE_STORAGE_KEY),
+    );
+
+    if (!rememberedPhone) {
+      return;
+    }
+
+    setFormValues((currentValues) => ({
+      ...currentValues,
+      phoneCountry: rememberedPhone.phoneCountry,
+      phoneCountryCode: rememberedPhone.phoneCountryCode,
+      phoneNumber: rememberedPhone.phoneNumber,
+    }));
+    setIsRememberPhoneEnabled(true);
+  }, []);
 
   function handleFieldChange(field: keyof LoginFormState) {
     return (event: ChangeEvent<HTMLInputElement>) => {
@@ -135,6 +193,19 @@ export function LoginPageContent() {
 
       const loginResponse = responseBody as LoginResponse;
 
+      if (isRememberPhoneEnabled) {
+        window.localStorage.setItem(
+          REMEMBERED_LOGIN_PHONE_STORAGE_KEY,
+          JSON.stringify({
+            phoneCountry: requestBody.phoneCountry,
+            phoneCountryCode: requestBody.phoneCountryCode,
+            phoneNumber: requestBody.phoneNumber,
+          } satisfies RememberedLoginPhone),
+        );
+      } else {
+        window.localStorage.removeItem(REMEMBERED_LOGIN_PHONE_STORAGE_KEY);
+      }
+
       window.location.href = `${DASHBOARD_BASE_URL}/dashboard#access_token=${encodeURIComponent(
         loginResponse.session.accessToken,
       )}`;
@@ -194,6 +265,18 @@ export function LoginPageContent() {
               value={formValues.password}
               onChange={handleFieldChange("password")}
             />
+
+            <label className="flex items-center gap-3 text-sm font-medium text-zinc-700">
+              <input
+                className="h-4 w-4 rounded border-zinc-300 text-teal-700 focus:ring-teal-600"
+                type="checkbox"
+                checked={isRememberPhoneEnabled}
+                onChange={(event) =>
+                  setIsRememberPhoneEnabled(event.target.checked)
+                }
+              />
+              <span>{t.auth.login.rememberPhoneLabel}</span>
+            </label>
 
             {errorMessage ? (
               <p
