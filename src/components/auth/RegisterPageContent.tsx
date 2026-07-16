@@ -15,6 +15,10 @@ import {
 import { AuthTextField } from "./AuthTextField";
 import { PhoneCountrySelect } from "./PhoneCountrySelect";
 import {
+  PlanSelect,
+  type PlanSelectOption,
+} from "./PlanSelect";
+import {
   initialFormState,
   phoneCountryOptions,
   type ApiErrorResponse,
@@ -58,8 +62,16 @@ export function RegisterPageContent() {
     useState<RegisterFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const selectablePlans = getPricingPlans(language).filter((plan) =>
-    isSelectablePlanId(plan.id),
+  const selectablePlans: PlanSelectOption[] = getPricingPlans(language).flatMap(
+    (plan) =>
+      isSelectablePlanId(plan.id)
+        ? [
+            {
+              id: plan.id,
+              label: plan.name,
+            },
+          ]
+        : [],
   );
 
   function handleFieldChange(field: keyof RegisterFormState) {
@@ -81,8 +93,8 @@ export function RegisterPageContent() {
     setErrorMessage(null);
   }
 
-  function handlePlanChange(event: ChangeEvent<HTMLSelectElement>) {
-    setSelectedPlan(normalizeSelectedPlan(event.target.value));
+  function handlePlanSelect(planId: SelectablePlanId) {
+    setSelectedPlan(planId);
     setErrorMessage(null);
   }
 
@@ -165,25 +177,15 @@ export function RegisterPageContent() {
             {t.auth.register.description}
           </p>
 
-          <label className="mt-6 block">
-            <span className="text-sm font-semibold text-zinc-950">
-              {t.auth.register.selectedPlan}
-            </span>
-
-            <select
-              className="h-11 w-full rounded-sm border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-950 shadow-sm outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:opacity-60"
-              name="planId"
-              value={selectedPlan}
-              onChange={handlePlanChange}
+          <div className="mt-6">
+            <PlanSelect
+              label={t.auth.register.selectedPlan}
+              selectedPlan={selectedPlan}
+              options={selectablePlans}
               disabled={isSubmitting}
-            >
-              {selectablePlans.map((plan) => (
-                <option key={plan.id} value={plan.id}>
-                  {plan.name}
-                </option>
-              ))}
-            </select>
-          </label>
+              onSelect={handlePlanSelect}
+            />
+          </div>
 
           <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2">
