@@ -4,15 +4,19 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Building2, Lock, Mail, Phone, User } from "lucide-react";
+import { getPricingPlans } from "@/data/pricing-plans";
 import { useTranslation } from "@/i18n/useTranslation";
 import { API_BASE_URL } from "@/lib/api";
-import { normalizeSelectedPlan } from "@/lib/plans";
+import {
+  normalizeSelectedPlan,
+  selectablePlanIds,
+  type SelectablePlanId,
+} from "@/lib/plans";
 import { AuthTextField } from "./AuthTextField";
 import { PhoneCountrySelect } from "./PhoneCountrySelect";
 import {
   initialFormState,
   phoneCountryOptions,
-  selectedPlanLabels,
   type ApiErrorResponse,
   type PhoneCountryOption,
   type RegisterFormState,
@@ -40,14 +44,23 @@ function getApiErrorMessage(responseBody: unknown) {
   return null;
 }
 
+function isSelectablePlanId(value: string): value is SelectablePlanId {
+  return selectablePlanIds.includes(value as SelectablePlanId);
+}
+
 export function RegisterPageContent() {
   const searchParams = useSearchParams();
-  const { t } = useTranslation();
-  const selectedPlan = normalizeSelectedPlan(searchParams.get("plan"));
+  const { t, language } = useTranslation();
+  const [selectedPlan, setSelectedPlan] = useState<SelectablePlanId>(() =>
+    normalizeSelectedPlan(searchParams.get("plan")),
+  );
   const [formValues, setFormValues] =
     useState<RegisterFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const selectablePlans = getPricingPlans(language).filter((plan) =>
+    isSelectablePlanId(plan.id),
+  );
 
   function handleFieldChange(field: keyof RegisterFormState) {
     return (event: ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +78,11 @@ export function RegisterPageContent() {
       phoneCountry: option.country,
       phoneCountryCode: option.code,
     }));
+    setErrorMessage(null);
+  }
+
+  function handlePlanChange(event: ChangeEvent<HTMLSelectElement>) {
+    setSelectedPlan(normalizeSelectedPlan(event.target.value));
     setErrorMessage(null);
   }
 
@@ -147,16 +165,27 @@ export function RegisterPageContent() {
             {t.auth.register.description}
           </p>
 
-          <div className="mt-5 rounded-sm border border-teal-200/70 bg-teal-50/80 px-4 py-3 text-sm text-zinc-700 shadow-sm shadow-teal-950/5">
-            <span className="font-semibold text-zinc-950">
-              {t.auth.register.selectedPlan}:
-            </span>{" "}
-            {selectedPlanLabels[selectedPlan]}
-          </div>
+          <label className="mt-6 block">
+            <span className="text-sm font-semibold text-zinc-950">
+              {t.auth.register.selectedPlan}
+            </span>
+
+            <select
+              className="h-11 w-full rounded-sm border border-zinc-200 bg-white px-3 text-sm font-medium text-zinc-950 shadow-sm outline-none transition focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:opacity-60"
+              name="planId"
+              value={selectedPlan}
+              onChange={handlePlanChange}
+              disabled={isSubmitting}
+            >
+              {selectablePlans.map((plan) => (
+                <option key={plan.id} value={plan.id}>
+                  {plan.name}
+                </option>
+              ))}
+            </select>
+          </label>
 
           <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
-            <input type="hidden" name="planId" value={selectedPlan} readOnly />
-
             <div className="grid gap-4 sm:grid-cols-2">
               <AuthTextField
                 label={t.auth.register.fullNameLabel}
