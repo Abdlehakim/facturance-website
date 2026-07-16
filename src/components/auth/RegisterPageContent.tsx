@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
-import { Building2, Lock, Mail, Phone, User } from "lucide-react";
+import { Building2, Mail, Phone, User } from "lucide-react";
 import { getPricingPlans } from "@/data/pricing-plans";
 import { useTranslation } from "@/i18n/useTranslation";
 import { API_BASE_URL } from "@/lib/api";
@@ -10,6 +10,7 @@ import {
   selectablePlanIds,
   type SelectablePlanId,
 } from "@/lib/plans";
+import { AuthPasswordField } from "./AuthPasswordField";
 import { AuthTextField } from "./AuthTextField";
 import { PhoneCountrySelect } from "./PhoneCountrySelect";
 import {
@@ -103,10 +104,13 @@ export function RegisterPageContent({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const password = formValues.password.trim();
+    const confirmPassword = formValues.confirmPassword.trim();
+
     const requestBody = {
       fullName: formValues.fullName.trim(),
       email: formValues.email.trim(),
-      password: formValues.password.trim(),
+      password,
       companyName: formValues.companyName.trim(),
       phoneCountry: formValues.phoneCountry,
       phoneCountryCode: formValues.phoneCountryCode,
@@ -121,9 +125,15 @@ export function RegisterPageContent({
       !requestBody.companyName ||
       !requestBody.phoneCountry ||
       !requestBody.phoneCountryCode ||
-      !requestBody.phoneNumber
+      !requestBody.phoneNumber ||
+      !confirmPassword
     ) {
       setErrorMessage(t.auth.register.error);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage(t.auth.register.passwordMismatch);
       return;
     }
 
@@ -245,14 +255,26 @@ export function RegisterPageContent({
               />
             </div>
 
-            <AuthTextField
+            <AuthPasswordField
               label={t.auth.register.passwordLabel}
-              icon={Lock}
-              type="password"
               name="password"
               placeholder={t.auth.register.passwordPlaceholder}
               value={formValues.password}
               onChange={handleFieldChange("password")}
+              autoComplete="new-password"
+              showPasswordLabel={t.auth.register.showPassword}
+              hidePasswordLabel={t.auth.register.hidePassword}
+            />
+
+            <AuthPasswordField
+              label={t.auth.register.confirmPasswordLabel}
+              name="confirmPassword"
+              placeholder={t.auth.register.confirmPasswordPlaceholder}
+              value={formValues.confirmPassword}
+              onChange={handleFieldChange("confirmPassword")}
+              autoComplete="new-password"
+              showPasswordLabel={t.auth.register.showPassword}
+              hidePasswordLabel={t.auth.register.hidePassword}
             />
 
             {errorMessage ? (

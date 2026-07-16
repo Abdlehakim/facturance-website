@@ -39,6 +39,7 @@ export type RegisterFormState = {
   phoneCountryCode: string;
   phoneNumber: string;
   password: string;
+  confirmPassword: string;
 };
 
 export type RegisterResponse = {
@@ -80,4 +81,5 @@ export const initialFormState: RegisterFormState = {
   phoneCountryCode: "+1",
   phoneNumber: "",
   password: "",
+  confirmPassword: "",
 };

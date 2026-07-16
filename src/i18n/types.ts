@@ -230,6 +230,11 @@ export type TranslationDictionary = {
       phoneNumberPlaceholder: string;
       passwordLabel: string;
       passwordPlaceholder: string;
+      confirmPasswordLabel: string;
+      confirmPasswordPlaceholder: string;
+      showPassword: string;
+      hidePassword: string;
+      passwordMismatch: string;
       button: string;
       selectedPlan: string;
       creatingAccount: string;
