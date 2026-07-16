@@ -2,13 +2,11 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { Building2, Lock, Mail, Phone, User } from "lucide-react";
 import { getPricingPlans } from "@/data/pricing-plans";
 import { useTranslation } from "@/i18n/useTranslation";
 import { API_BASE_URL } from "@/lib/api";
 import {
-  normalizeSelectedPlan,
   selectablePlanIds,
   type SelectablePlanId,
 } from "@/lib/plans";
@@ -29,6 +27,10 @@ import {
 
 const DASHBOARD_BASE_URL =
   process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL ?? "http://localhost:5173";
+
+type RegisterPageContentProps = {
+  initialPlan: SelectablePlanId;
+};
 
 function getApiErrorMessage(responseBody: unknown) {
   if (!responseBody || typeof responseBody !== "object") {
@@ -52,12 +54,12 @@ function isSelectablePlanId(value: string): value is SelectablePlanId {
   return selectablePlanIds.includes(value as SelectablePlanId);
 }
 
-export function RegisterPageContent() {
-  const searchParams = useSearchParams();
+export function RegisterPageContent({
+  initialPlan,
+}: RegisterPageContentProps) {
   const { t, language } = useTranslation();
-  const [selectedPlan, setSelectedPlan] = useState<SelectablePlanId>(() =>
-    normalizeSelectedPlan(searchParams.get("plan")),
-  );
+  const [selectedPlan, setSelectedPlan] =
+    useState<SelectablePlanId>(initialPlan);
   const [formValues, setFormValues] =
     useState<RegisterFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
